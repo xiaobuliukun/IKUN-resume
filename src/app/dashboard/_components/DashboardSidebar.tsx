@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 // import { UserButton, useUser } from '@clerk/nextjs';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -42,8 +41,8 @@ export default function DashboardSidebar() {
   const sidebarContent = (
     <>
       <div className="px-4 mb-8 flex justify-center">
-        <Link href="/dashboard">
-          <Image src="/magic-resume-logo.png" alt="Magic Resume Logo" width={150} height={0} />
+        <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+          Smart Resume
         </Link>
       </div>
       <nav className="flex-1 px-4">
@@ -88,8 +87,8 @@ export default function DashboardSidebar() {
     }
     return (
       <aside className="border-r border-neutral-800 bg-neutral-900 flex-col p-4 w-20 items-center hidden md:flex">
-        <Link href="/dashboard" className="mb-8">
-          <Image src="/simple-logo.png" alt="Magic Resume Logo" width={40} height={40} />
+        <Link href="/" className="mb-8 text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+          SR
         </Link>
         <nav className="flex flex-col gap-2 flex-grow justify-center">
           {activeResume?.sectionOrder.map((section) => {
