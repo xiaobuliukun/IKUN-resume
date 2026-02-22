@@ -37,7 +37,7 @@ export default function DashboardSidebar() {
   useEffect(() => {
     setHasMounted(true);
     loadSettings();
-  }, []);
+  }, [loadSettings]);
 
   const sidebarContent = (
     <>

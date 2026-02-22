@@ -59,7 +59,7 @@ export const getModel = ({
       apiKey,
       baseURL: effectiveBaseUrl,
     },
-    // @ts-ignore
+    // @ts-expect-error tiktokenModelName is not in the type definition but is required
     tiktokenModelName: "gpt-4o",
   });
 

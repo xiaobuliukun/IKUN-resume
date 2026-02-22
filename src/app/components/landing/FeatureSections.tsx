@@ -1,10 +1,10 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  FiCheckCircle, FiArrowRight, FiZap, FiShield, FiDownload, FiUpload, 
+  FiZap, FiShield, 
   FiCpu, FiDatabase, FiLayout, FiLock, FiFileText, FiTarget, FiPenTool, FiPrinter,
-  FiTrendingUp, FiAlertCircle, FiCheckSquare, FiLayers, FiCommand, FiBarChart2, FiClock, FiActivity,
+  FiTrendingUp, FiAlertCircle, FiCheckSquare, FiLayers, FiCommand, FiBarChart2, FiClock,
   FiX, FiCheck, FiAward, FiBriefcase, FiUsers, FiRefreshCw, FiCode, FiMousePointer
 } from 'react-icons/fi';
 import Image from 'next/image';
@@ -32,31 +32,6 @@ const SimpleMagneticCard = ({ children, className = "" }: { children: React.Reac
   );
 };
 
-// 发光按钮组件
-const GlowButton = ({ children, onClick, variant = "primary" }: { 
-  children: React.ReactNode; 
-  onClick?: () => void;
-  variant?: "primary" | "secondary";
-}) => (
-  <motion.button
-    onClick={onClick}
-    className={`
-      relative px-6 py-3 rounded-lg font-semibold transition-all duration-300 overflow-hidden group
-      ${variant === "primary" 
-        ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white" 
-        : "border border-neutral-600 text-neutral-300 hover:border-blue-400"
-      }
-    `}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.98 }}
-  >
-    <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-    <div className="relative z-10 flex items-center gap-2">
-      {children}
-    </div>
-  </motion.button>
-);
-
 export function FeatureSections() {
   const { t } = useTranslation();
   
@@ -67,14 +42,14 @@ export function FeatureSections() {
     '/magic-resume-analysis.png',
   ];
   const [currentAiImageIndex, setCurrentAiImageIndex] = useState(0);
-  const [aiPaused, setAiPaused] = useState(false);
+  const [aiPaused] = useState(false);
 
   const exportImportImages = [
     '/magic-resume-export.png',
     '/magic-resume-import.png',
   ];
   const [currentExportImageIndex, setCurrentExportImageIndex] = useState(0);
-  const [exportPaused, setExportPaused] = useState(false);
+  const [exportPaused] = useState(false);
 
   useEffect(() => {
     const aiInterval = setInterval(() => {
@@ -158,7 +133,7 @@ export function FeatureSections() {
                       <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-neutral-800 border border-neutral-700/50">
                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-500/5" />
                          <Image
-                            src={aiCarouselImages[0]}
+                            src={aiCarouselImages[currentAiImageIndex]}
                             alt="AI Feature"
                             width={400}
                             height={225}
@@ -195,7 +170,7 @@ export function FeatureSections() {
                       <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-neutral-800 border border-neutral-700/50">
                          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5" />
                          <Image
-                            src={exportImportImages[0]}
+                            src={exportImportImages[currentExportImageIndex]}
                             alt="Privacy Feature"
                             width={400}
                             height={225}

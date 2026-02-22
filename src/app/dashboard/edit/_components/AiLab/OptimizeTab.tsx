@@ -70,8 +70,10 @@ export default function OptimizeTab({ resumeData, onApplyChanges, templateId, is
       if (resumeData.id) {
         // 使用 setTimeout 确保 onApplyChanges 的状态更新已完成（虽然 Zustand 是同步的，但这能让 UI 渲染更平滑）
         setTimeout(async () => {
-            await saveResume(resumeData.id);
-            toast.success("优化结果已应用并自动保存！");
+            if (resumeData.id) {
+              await saveResume();
+              toast.success("优化结果已应用并自动保存！");
+            }
         }, 100);
       }
     }

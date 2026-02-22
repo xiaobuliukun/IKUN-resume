@@ -19,7 +19,7 @@ interface Props {
   customTemplate?: CustomTemplateConfig; // 新增：自定义模板配置差异
 }
 
-export default function ResumePreview({ info, sections, sectionOrder, templateId, customTemplate }: Props) {
+export default React.forwardRef<HTMLDivElement, Props>(function ResumePreview({ info, sections, sectionOrder, templateId, customTemplate }, ref) {
   const [template, setTemplate] = useState<MagicTemplateDSL | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -98,5 +98,11 @@ export default function ResumePreview({ info, sections, sectionOrder, templateId
     );
   }
 
-  return <MagicResumeRenderer template={template} data={resumeData} />;
-} 
+  return (
+    <div id="resume-preview-container" ref={ref} className="w-full h-full flex justify-center bg-white shadow-2xl print:shadow-none print:w-full print:h-auto print:block">
+       <div className="print:w-full">
+         <MagicResumeRenderer template={template} data={resumeData} />
+       </div>
+    </div>
+  );
+}); 

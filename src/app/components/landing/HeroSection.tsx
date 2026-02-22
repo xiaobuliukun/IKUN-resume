@@ -102,6 +102,7 @@ const SimpleParticleField = () => {
   );
 };
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const fadeIn = {
   hidden: { opacity: 0, y: 30, scale: 0.95 },
   visible: { 
@@ -128,6 +129,7 @@ const slideIn = {
     } 
   },
 };
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 export function HeroSection() {
   const { t } = useTranslation();
@@ -163,7 +165,6 @@ export function HeroSection() {
         <motion.div 
           initial="hidden" 
           animate={controls} 
-          variants={fadeIn as any}
           className="space-y-8 flex flex-col items-center"
         >
           {/* 标签 */}
@@ -258,7 +259,6 @@ export function HeroSection() {
         <motion.div 
           initial="hidden" 
           animate={controls} 
-          variants={slideIn as any}
           className="relative w-full max-w-4xl"
         >
           {/* 简化的背景光晕 */}

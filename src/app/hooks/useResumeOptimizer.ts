@@ -9,7 +9,7 @@ const nextUrl = process.env.NEXT_PUBLIC_IF_USE_BACKEND === 'true' ? '/api' : '/a
 
 export const useResumeOptimizer = () => {
   const { t } = useTranslation();
-  const { apiKey, baseUrl, model, maxTokens } = useSettingStore();
+  const { apiKey, baseUrl, model } = useSettingStore();
   const {
     isLoading,
     logs,

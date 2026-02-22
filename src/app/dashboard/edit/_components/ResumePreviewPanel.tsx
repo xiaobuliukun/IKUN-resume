@@ -1,12 +1,13 @@
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
 import ResumePreview from './ResumePreview';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Resume } from '@/store/useResumeStore';
 import useMobile from '@/app/hooks/useMobile';
 import { Tools } from './Tools';
 import AiThinkingOverlay from './AiThinkingOverlay';
+import { useReactToPrint } from 'react-to-print';
 
 interface ResumePreviewPanelProps {
   activeResume: Resume | null;
@@ -25,6 +26,12 @@ const ResumePreviewPanel: React.FC<ResumePreviewPanelProps> = ({
   rightCollapsed = false
 }) => {
   const { isMobile } = useMobile();
+  const resumeRef = useRef<HTMLDivElement>(null);
+
+  const handlePrint = useReactToPrint({
+    contentRef: resumeRef,
+    documentTitle: activeResume?.name || 'Resume',
+  });
 
   if (!activeResume) {
     return (
@@ -54,6 +61,7 @@ const ResumePreviewPanel: React.FC<ResumePreviewPanelProps> = ({
             >
               <div className="relative">
                 <ResumePreview 
+                  ref={resumeRef}
                   info={activeResume.info} 
                   sections={activeResume.sections} 
                   sectionOrder={activeResume.sectionOrder.map(s => s.key)} 
@@ -77,6 +85,7 @@ const ResumePreviewPanel: React.FC<ResumePreviewPanelProps> = ({
               rightCollapsed={rightCollapsed}
               templateId={activeResume.template}
               customTemplate={activeResume.customTemplate}
+              onExport={() => handlePrint && handlePrint()}
             />
           </>
         )}
