@@ -600,7 +600,9 @@
     },
     "success": "简历导入成功！",
     "importedName": "{{name}}（已导入）",
-    "cancel": "取消"
+    "cancel": "取消",
+    "showExample": "查看示例格式",
+    "hideExample": "隐藏示例格式"
   },
   "dynamicForm": {
     "fields": {

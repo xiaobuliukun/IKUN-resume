@@ -11,6 +11,7 @@ import { FiMenu, FiX } from 'react-icons/fi';
 import { FaRegFileAlt, FaCog } from 'react-icons/fa';
 import { Skeleton } from '@/app/components/ui/Skeleton';
 import { useResumeStore } from '@/store/useResumeStore';
+import { useSettingStore } from '@/store/useSettingStore';
 import sidebarMenu from '@/constant/sidebarMenu';
 import { Button } from '@/app/components/ui/button';
 import { useTranslation } from 'react-i18next';
@@ -31,9 +32,11 @@ export default function DashboardSidebar() {
   const pathname = usePathname();
   const [hasMounted, setHasMounted] = useState(false);
   const { activeResume, setActiveSection } = useResumeStore();
+  const { loadSettings } = useSettingStore();
 
   useEffect(() => {
     setHasMounted(true);
+    loadSettings();
   }, []);
 
   const sidebarContent = (

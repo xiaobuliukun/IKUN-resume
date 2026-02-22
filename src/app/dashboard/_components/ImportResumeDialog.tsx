@@ -23,6 +23,22 @@ export default function ImportResumeDialog({ open, onOpenChange }: ImportResumeD
   const { addResume } = useResumeStore();
   const [error, setError] = useState<string | null>(null);
   const { t } = useTranslation();
+  const [showExample, setShowExample] = useState(false);
+
+  const exampleJson = {
+    "info": {
+      "fullName": "Your Name",
+      "email": "email@example.com",
+      "headline": "Job Title"
+    },
+    "sections": {
+      "summary": [],
+      "experience": [],
+      "education": [],
+      "skills": [],
+      "projects": []
+    }
+  };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setError(null);
@@ -93,10 +109,35 @@ export default function ImportResumeDialog({ open, onOpenChange }: ImportResumeD
           </div>
         </div>
         
+        <div className="flex justify-end mt-2">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="bg-transparent hover:bg-neutral-800 text-xs text-neutral-400 hover:text-white"
+            onClick={() => setShowExample(!showExample)}
+          >
+            {showExample ? t('importDialog.hideExample') : t('importDialog.showExample')}
+          </Button>
+        </div>
+        
+        {showExample && (
+          <div className="mt-2 p-3 bg-neutral-950 rounded-md border border-neutral-800 overflow-auto max-h-60 text-left">
+            <pre className="text-xs text-neutral-300 font-mono">
+              {JSON.stringify(exampleJson, null, 2)}
+            </pre>
+          </div>
+        )}
+        
         {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
 
         <DialogFooter className="mt-4">
-          <Button variant="outline" onClick={() => onOpenChange(false)}>{t('importDialog.cancel')}</Button>
+          <Button 
+            variant="outline" 
+            className="bg-transparent border-neutral-700 hover:bg-neutral-800 text-neutral-300 hover:text-white"
+            onClick={() => onOpenChange(false)}
+          >
+            {t('importDialog.cancel')}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

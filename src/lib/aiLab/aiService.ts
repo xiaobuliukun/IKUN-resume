@@ -59,6 +59,8 @@ export const getModel = ({
       apiKey,
       baseURL: effectiveBaseUrl,
     },
+    // @ts-ignore
+    tiktokenModelName: "gpt-4o",
   });
 
   return llm;

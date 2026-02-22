@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { dbClient } from '@/lib/IndexDBClient';
+import { MODEL_API_URL_MAP } from '@/constant/modals';
 
 // 移除立即初始化，改为懒加载
 let dbInitialized = false;
@@ -35,8 +36,8 @@ interface SettingsState extends SettingsData {
 
 const defaultSettings: SettingsData = {
   apiKey: '',
-  baseUrl: 'http://localhost:11434/v1',
-  model: 'gpt-3.5-turbo',
+  baseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+  model: 'qwen-plus',
   maxTokens: 1024,
 };
 
@@ -85,7 +86,22 @@ export const useSettingStore = create<SettingsState>((set, get) => ({
     await ensureDbInitialized();
     const savedSettings = await dbClient.getItem('settings') as SettingsData | null;
     if (savedSettings) {
-      set({ ...savedSettings, initialSettings: { ...savedSettings }, isDirty: false });
+      // 验证模型是否存在，不存在则使用默认值
+      let validModel = savedSettings.model;
+      let validBaseUrl = savedSettings.baseUrl;
+      
+      if (!Object.keys(MODEL_API_URL_MAP).includes(validModel)) {
+        validModel = defaultSettings.model;
+        validBaseUrl = defaultSettings.baseUrl; // 模型重置时，URL也重置以匹配
+      }
+
+      const validatedSettings = { 
+        ...savedSettings, 
+        model: validModel,
+        baseUrl: validBaseUrl 
+      };
+
+      set({ ...validatedSettings, initialSettings: { ...validatedSettings }, isDirty: false });
     }
   },
 }));

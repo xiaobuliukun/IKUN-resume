@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Globe2 } from "lucide-react";
 
@@ -14,22 +14,27 @@ export default function LanguageSwitcher() {
     setIsMounted(true);
   }, []);
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language.startsWith("en") ? "zh" : "en";
-    i18n.changeLanguage(newLang);
+  const toggleLanguage = async () => {
+    // 强制切换逻辑：只要当前是中文开头，就切英文；否则切中文
+    const currentLang = i18n.language;
+    const targetLang = currentLang.startsWith("zh") ? "en" : "zh";
+    console.log(`[LanguageSwitcher] Switching from ${currentLang} to ${targetLang}`);
+    await i18n.changeLanguage(targetLang);
+    // 强制更新状态，确保页面重渲染
+    i18n.emit('languageChanged', targetLang);
   };
 
-  const iconVariants = {
+  const iconVariants: Variants = {
     initial: { opacity: 0, scale: 0.5, rotateY: -90 },
     animate: { opacity: 1, scale: 1, rotateY: 0 },
     exit: { opacity: 0, scale: 0.5, rotateY: 90 },
   };
 
-  const buttonVariants = {
+  const buttonVariants: Variants = {
     initial: { scale: 1 },
     hover: { 
       scale: 1.05,
-      transition: { duration: 0.2, ease: "easeOut" }
+      transition: { duration: 0.2, ease: "easeInOut" }
     },
     tap: { 
       scale: 0.95,
@@ -91,7 +96,7 @@ export default function LanguageSwitcher() {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="font-medium text-xs w-4 text-center"
             >
-              {isEnglish ? "EN" : "中"}
+              {isEnglish ? "中" : "EN"}
             </motion.div>
           </AnimatePresence>
         </div>

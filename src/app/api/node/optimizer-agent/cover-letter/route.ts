@@ -20,19 +20,29 @@ export async function POST(req: NextRequest) {
         });
 
         const content = response.content;
-        let jsonContent = content;
+        let jsonContent = '';
 
         if (typeof content === 'string') {
-            // Remove markdown code blocks if present to extract JSON
-            jsonContent = content.replace(/```json\n?|\n?```/g, '').trim();
+             // Robust JSON extraction
+             const firstBrace = content.indexOf('{');
+             const lastBrace = content.lastIndexOf('}');
+             
+             if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+                 jsonContent = content.substring(firstBrace, lastBrace + 1);
+             } else {
+                 jsonContent = content.replace(/```json\n?|\n?```/g, '').trim();
+             }
+        } else {
+             jsonContent = JSON.stringify(content);
         }
 
         try {
-            const parsedData = JSON.parse(jsonContent as string);
+            const parsedData = JSON.parse(jsonContent);
             return NextResponse.json(parsedData);
         } catch (parseError) {
             console.error("JSON Parse Error:", parseError, "Content:", content);
             // Fallback: return the raw content if it's not valid JSON, wrapped in the expected structure
+            // If extracting JSON failed, we assume the whole content is the letter
             return NextResponse.json({ content: content });
         }
 

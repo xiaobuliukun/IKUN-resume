@@ -17,26 +17,26 @@ You must return a single, valid JSON object. The response must NOT contain any m
 
 **JSON Schema:**
 \`\`\`json
-{
+{{
   "targetRole": "string (The analyzed target role)",
   "radarData": [
-    { "subject": "Technical Hard Skills", "current": number (0-100), "required": number (0-100), "fullMark": 100 },
-    { "subject": "Soft Skills & Leadership", "current": number (0-100), "required": number (0-100), "fullMark": 100 },
-    { "subject": "Domain Knowledge", "current": number (0-100), "required": number (0-100), "fullMark": 100 },
-    { "subject": "Project Experience", "current": number (0-100), "required": number (0-100), "fullMark": 100 },
-    { "subject": "Education & Certifications", "current": number (0-100), "required": number (0-100), "fullMark": 100 },
-    { "subject": "Industry Influence", "current": number (0-100), "required": number (0-100), "fullMark": 100 }
+    {{ "subject": "Technical Hard Skills", "current": number (0-100), "required": number (0-100), "fullMark": 100 }},
+    {{ "subject": "Soft Skills & Leadership", "current": number (0-100), "required": number (0-100), "fullMark": 100 }},
+    {{ "subject": "Domain Knowledge", "current": number (0-100), "required": number (0-100), "fullMark": 100 }},
+    {{ "subject": "Project Experience", "current": number (0-100), "required": number (0-100), "fullMark": 100 }},
+    {{ "subject": "Education & Certifications", "current": number (0-100), "required": number (0-100), "fullMark": 100 }},
+    {{ "subject": "Industry Influence", "current": number (0-100), "required": number (0-100), "fullMark": 100 }}
   ],
   "gapAnalysis": "string (A concise paragraph summarizing the key gaps in Simplified Chinese)",
   "learningPath": [
-    {
+    {{
       "step": "number",
       "title": "string (Actionable step title in Simplified Chinese)",
       "description": "string (Detailed description of what to learn/do in Simplified Chinese)",
       "timeline": "string (e.g., '1-2 months')"
-    }
+    }}
   ]
-}
+}}
 \`\`\`
 
 **Scoring Logic:**

@@ -179,11 +179,27 @@ const webSearchNode = async (state: GraphState): Promise<Partial<GraphState>> =>
   if (!queries || queries.length === 0) {
     return { summaries: summaries };
   }
-  const searchTool = new TavilySearch({ maxResults: 3 });
-  const searchResults = await Promise.all(queries.map(q => searchTool.invoke({ query: q })));
-  const newSummaries = searchResults.flat();
-  const allSummaries = (summaries || []).concat(newSummaries);
-  return { summaries: allSummaries, queries: [] }; 
+  try {
+    const searchTool = new TavilySearch({ maxResults: 3 });
+    const searchResults = await Promise.all(
+      queries.map(q => 
+        searchTool.invoke({ query: q }).catch(e => {
+          console.error(`Search failed for query "${q}":`, e);
+          return [`[Search Error] Could not retrieve results for: "${q}"`];
+        })
+      )
+    );
+    const newSummaries = searchResults.flat();
+    const allSummaries = (summaries || []).concat(newSummaries);
+    return { summaries: allSummaries, queries: [] }; 
+  } catch (error) {
+    console.error("Web search node critical error:", error);
+    // Fallback: return existing summaries or a placeholder to allow the graph to continue
+    return { 
+      summaries: (summaries && summaries.length > 0) ? summaries : ["Web search service is currently unavailable. Proceeding with analysis based on JD and Resume content only."],
+      queries: [] 
+    };
+  }
 }
 
 const reflectionNode = async (state: GraphState, config: CreateChatChainOptions): Promise<Partial<GraphState>> => {

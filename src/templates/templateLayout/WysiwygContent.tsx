@@ -7,7 +7,13 @@ interface Props {
 }
 
 export function WysiwygContent({ dirtyHtml, className }: Props) {
-  if (typeof window === 'undefined') {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
     return <div className={className} />;
   }
   const cleanHtml = DOMPurify.sanitize(dirtyHtml);

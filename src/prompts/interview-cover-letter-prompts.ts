@@ -57,9 +57,9 @@ Return the response as a valid JSON object with a single key "content" containin
 
 **JSON Schema:**
 \`\`\`json
-{
+{{
   "content": "string (markdown formatted cover letter)"
-}
+}}
 \`\`\`
 
 **Input Data:**

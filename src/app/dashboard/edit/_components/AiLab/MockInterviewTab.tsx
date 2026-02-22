@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Button } from "@/app/components/ui/button";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Resume } from '@/store/useResumeStore';
+import { useSettingStore } from '@/store/useSettingStore';
 import { Loader2, Mic, MicOff, Send, User, Bot, Play, Square } from 'lucide-react';
-import { ScrollArea } from "@/app/components/ui/scroll-area";
+// import { ScrollArea } from "@/app/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from 'react-markdown';
 
@@ -28,6 +29,7 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
   const [isRecording, setIsRecording] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
+  const { apiKey, model, baseUrl } = useSettingStore();
 
   // Initialize Speech Recognition
   useEffect(() => {
@@ -105,6 +107,11 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
           messages: currentHistory,
           jd,
           resumeData,
+          config: {
+            apiKey,
+            modelName: model,
+            baseUrl
+          }
         }),
       });
 
@@ -156,6 +163,13 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
     }
   };
 
+  const handleEndSession = () => {
+    setIsInterviewStarted(false);
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  };
+
   if (!isInterviewStarted) {
     return (
       <div className="flex flex-col h-full items-center justify-center p-6 space-y-6">
@@ -193,7 +207,7 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
         <Button 
             variant="ghost" 
             size="sm" 
-            onClick={() => setIsInterviewStarted(false)}
+            onClick={handleEndSession}
             className="text-neutral-400 hover:text-white"
         >
             {t('modals.aiModal.mockInterview.endBtn') || 'End Session'}

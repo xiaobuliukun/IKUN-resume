@@ -79,16 +79,16 @@ function ResumeCard({
               </div>
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+            
+            <CardFooter className="absolute bottom-0 left-0 w-full p-4 z-10">
+              <div>
+                <div className="font-semibold text-white text-base truncate group-hover:text-sky-400 transition-colors">{resume.name}</div>
+                <div className="text-xs text-neutral-400 mt-1">{t('dashboard.resumeCard.lastUpdated', { time: formatTime(resume.updatedAt) })}</div>
+              </div>
+            </CardFooter>
           </div>
         </Link>
         
-        <CardFooter className="absolute bottom-0 left-0 w-full p-4 z-10">
-          <div>
-            <div className="font-semibold text-white text-base truncate group-hover:text-sky-400 transition-colors">{resume.name}</div>
-            <div className="text-xs text-neutral-400 mt-1">{t('dashboard.resumeCard.lastUpdated', { time: formatTime(resume.updatedAt) })}</div>
-          </div>
-        </CardFooter>
-
         <div className="absolute top-2 right-2 z-20">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -122,8 +122,35 @@ function ResumeCard({
   );
 }
 
+import { Skeleton } from '@/app/components/ui/Skeleton';
+
+function ResumeListSkeleton() {
+  return (
+    <div className="flex-1 flex flex-col px-12 py-10 overflow-auto">
+      <div className="flex items-center justify-between mb-8">
+        <Skeleton className="h-10 w-48" />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {[1, 2, 3, 4].map((i) => (
+          <Skeleton key={i} className="h-64 rounded-xl" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ResumeList({ resumes, onAdd, onImport, onDelete, onDuplicate, onRename }: ResumeListProps) {
   const { t } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return <ResumeListSkeleton />;
+  }
+
   return (
     <div className="flex-1 flex flex-col px-12 py-10 overflow-auto">
       <div className="flex items-center justify-between mb-8">

@@ -174,7 +174,7 @@ export function HeroSection() {
             className="inline-block"
           >
             <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 backdrop-blur-sm border border-blue-400/30 text-blue-300 text-sm py-2 px-4 rounded-full mb-4 shadow-lg">
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2" suppressHydrationWarning>
                 <FiZap className="w-4 h-4" />
                 {t("landing.hero.tag")}
               </span>
@@ -188,7 +188,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-400 pb-2 leading-tight">
+            <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-400 pb-2 leading-tight" suppressHydrationWarning>
                <Trans i18nKey="landing.hero.title" components={{ 1: <br /> }} />
             </h1>
           </motion.div>
@@ -199,6 +199,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
+            suppressHydrationWarning
           >
             {t("landing.hero.subtitle")}
           </motion.p>
@@ -218,7 +219,7 @@ export function HeroSection() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg" />
                 <div className="relative z-10 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-3 shadow-lg group-hover:shadow-blue-500/25 group-hover:shadow-xl">
-                  {t("landing.hero.getStarted")} 
+                  <span suppressHydrationWarning>{t("landing.hero.getStarted")}</span>
                   <motion.div
                     animate={{ x: [0, 4, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -239,12 +240,13 @@ export function HeroSection() {
           >
             {[t("landing.tags.aiSmart"), t("landing.tags.freeForever"), t("landing.tags.dataSecurity")].map((feature, index) => (
               <motion.span
-                key={feature}
+                key={index}
                 className="px-3 py-1 bg-neutral-800/50 backdrop-blur-sm border border-neutral-700 text-neutral-400 text-sm rounded-full"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2 + index * 0.1, type: "spring", stiffness: 200 }}
                 whileHover={{ scale: 1.1, borderColor: "#3b82f6" }}
+                suppressHydrationWarning
               >
                 {feature}
               </motion.span>
@@ -274,6 +276,7 @@ export function HeroSection() {
                 className="w-full h-auto group-hover:brightness-110 transition-all duration-300"
                 priority
                 quality={85}
+                suppressHydrationWarning
               />
               
               {/* 轻量级悬浮叠加 */}

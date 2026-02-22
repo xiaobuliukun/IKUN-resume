@@ -88,7 +88,7 @@ export const useResumeCreator = () => {
     let streamStarted = false;
 
     try {
-      const config = { apiKey, baseUrl, modelName: model, maxTokens: 65536 };
+      const config = { apiKey, baseUrl, modelName: model, maxTokens: 8192 };
       
       const requestBody = {
         messages: [...messages, newUserMessage],

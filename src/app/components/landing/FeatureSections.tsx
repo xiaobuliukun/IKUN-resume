@@ -121,14 +121,14 @@ export function FeatureSections() {
             >
               <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 backdrop-blur-sm border border-blue-400/30 text-blue-300 px-4 py-2 rounded-full">
                 <FiZap className="inline w-4 h-4 mr-2" />
-                {t("landing.tags.aiEnhancement")}
+                <span suppressHydrationWarning>{t("landing.tags.aiEnhancement")}</span>
               </div>
             </motion.div>
             
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent" suppressHydrationWarning>
               {t("landing.features.main.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed" suppressHydrationWarning>
               {t("landing.features.main.subtitle")}
             </p>
           </motion.div>
@@ -148,9 +148,9 @@ export function FeatureSections() {
                       <FiZap className="w-8 h-8 text-blue-400" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold mb-4 text-white">{t("landing.features.ai.title")}</h3>
+                    <h3 className="text-2xl font-bold mb-4 text-white" suppressHydrationWarning>{t("landing.features.ai.title")}</h3>
                     
-                    <p className="text-neutral-400 leading-relaxed mb-6 flex-grow">
+                    <p className="text-neutral-400 leading-relaxed mb-6 flex-grow" suppressHydrationWarning>
                       {t("landing.features.ai.description")}
                     </p>
 
@@ -163,6 +163,7 @@ export function FeatureSections() {
                             width={400}
                             height={225}
                             className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
+                            suppressHydrationWarning
                          />
                       </div>
                     </div>
@@ -184,9 +185,9 @@ export function FeatureSections() {
                       <FiShield className="w-8 h-8 text-indigo-400" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold mb-4 text-white">{t("landing.tags.dataSecurityGuarantee")}</h3>
+                    <h3 className="text-2xl font-bold mb-4 text-white" suppressHydrationWarning>{t("landing.tags.dataSecurityGuarantee")}</h3>
                     
-                    <p className="text-neutral-400 leading-relaxed mb-6 flex-grow">
+                    <p className="text-neutral-400 leading-relaxed mb-6 flex-grow" suppressHydrationWarning>
                       {t("landing.features.privacy.description")}
                     </p>
 
@@ -219,10 +220,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
               {t("landing.features.background.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
               {t("landing.features.background.subtitle")}
             </p>
           </motion.div>
@@ -259,10 +260,10 @@ export function FeatureSections() {
                 <div className={`w-12 h-12 rounded-full bg-${item.color}-500/10 flex items-center justify-center mb-6`}>
                   <item.icon className={`w-6 h-6 text-${item.color}-500`} />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-white">
+                <h3 className="text-xl font-bold mb-4 text-white" suppressHydrationWarning>
                   {t(`landing.features.background.cards.${item.key}.title`)}
                 </h3>
-                <p className="text-neutral-400 leading-relaxed">
+                <p className="text-neutral-400 leading-relaxed" suppressHydrationWarning>
                   {t(`landing.features.background.cards.${item.key}.desc`)}
                 </p>
               </motion.div>
@@ -281,10 +282,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
               {t("landing.features.comparison.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
               {t("landing.features.comparison.subtitle")}
             </p>
           </motion.div>
@@ -302,13 +303,13 @@ export function FeatureSections() {
                 <div className="p-2 bg-red-500/10 rounded-lg">
                   <FiX className="w-6 h-6 text-red-500" />
                 </div>
-                <h3 className="text-2xl font-bold text-neutral-300">{t("landing.features.comparison.traditional.title")}</h3>
+                <h3 className="text-2xl font-bold text-neutral-300" suppressHydrationWarning>{t("landing.features.comparison.traditional.title")}</h3>
               </div>
               <ul className="space-y-4">
                 {[0, 1, 2, 3].map((i) => (
                   <li key={i} className="flex items-start gap-3 text-neutral-400">
                     <FiX className="w-5 h-5 text-red-500/50 mt-0.5 flex-shrink-0" />
-                    <span>{t(`landing.features.comparison.traditional.points.${i}`)}</span>
+                    <span suppressHydrationWarning>{t(`landing.features.comparison.traditional.points.${i}`)}</span>
                   </li>
                 ))}
               </ul>
@@ -329,13 +330,13 @@ export function FeatureSections() {
                 <div className="p-2 bg-blue-500/10 rounded-lg">
                   <FiCheck className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">{t("landing.features.comparison.ourSystem.title")}</h3>
+                <h3 className="text-2xl font-bold text-white" suppressHydrationWarning>{t("landing.features.comparison.ourSystem.title")}</h3>
               </div>
               <ul className="space-y-4">
                 {[0, 1, 2, 3].map((i) => (
                   <li key={i} className="flex items-start gap-3 text-blue-100">
                     <FiCheck className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
-                    <span>{t(`landing.features.comparison.ourSystem.points.${i}`)}</span>
+                    <span suppressHydrationWarning>{t(`landing.features.comparison.ourSystem.points.${i}`)}</span>
                   </li>
                 ))}
               </ul>
@@ -354,10 +355,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
               {t("landing.features.architecture.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
               {t("landing.features.architecture.subtitle")}
             </p>
           </motion.div>
@@ -400,8 +401,8 @@ export function FeatureSections() {
                 <div className={`w-12 h-12 rounded-lg bg-${item.color}-500/10 flex items-center justify-center mb-4 text-${item.color}-400`}>
                   <item.icon size={24} />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed">
+                <h3 className="text-xl font-bold mb-3 text-white" suppressHydrationWarning>{item.title}</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed" suppressHydrationWarning>
                   {item.desc}
                 </p>
               </motion.div>
@@ -420,10 +421,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
               {t("landing.features.innovations.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
               {t("landing.features.innovations.subtitle")}
             </p>
           </motion.div>
@@ -447,10 +448,10 @@ export function FeatureSections() {
                   <div className={`w-14 h-14 rounded-2xl bg-${item.color}-500/10 flex items-center justify-center mb-6 text-${item.color}-400 group-hover:scale-110 transition-transform duration-300`}>
                     <item.icon size={28} />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-2xl font-bold text-white mb-4" suppressHydrationWarning>
                     {t(`landing.features.innovations.${item.key}.title`)}
                   </h3>
-                  <p className="text-neutral-400 leading-relaxed">
+                  <p className="text-neutral-400 leading-relaxed" suppressHydrationWarning>
                     {t(`landing.features.innovations.${item.key}.desc`)}
                   </p>
                 </div>
@@ -470,7 +471,7 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-white">
+            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-white" suppressHydrationWarning>
               {t("landing.features.workflow.title")}
             </h2>
           </motion.div>
@@ -499,10 +500,10 @@ export function FeatureSections() {
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-900/80 text-blue-200 text-xs px-2 py-0.5 rounded-full border border-blue-700">
                   Step {index + 1}
                 </div>
-                <h3 className="text-lg font-bold mb-3 text-white">
+                <h3 className="text-lg font-bold mb-3 text-white" suppressHydrationWarning>
                   {t(`landing.features.workflow.steps.${step.key}.title`)}
                 </h3>
-                <p className="text-neutral-400 text-sm">
+                <p className="text-neutral-400 text-sm" suppressHydrationWarning>
                   {t(`landing.features.workflow.steps.${step.key}.description`)}
                 </p>
               </motion.div>
@@ -521,10 +522,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
               {t("landing.features.algorithm.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
               {t("landing.features.algorithm.subtitle")}
             </p>
           </motion.div>
@@ -539,9 +540,9 @@ export function FeatureSections() {
                  <div className="p-3 bg-blue-500/20 rounded-lg text-blue-400">
                    <FiLayers size={32} />
                  </div>
-                 <h3 className="text-2xl font-bold text-white">{t("landing.features.algorithm.rag.title")}</h3>
+                 <h3 className="text-2xl font-bold text-white" suppressHydrationWarning>{t("landing.features.algorithm.rag.title")}</h3>
                </div>
-               <p className="text-neutral-400 leading-relaxed mb-6">
+               <p className="text-neutral-400 leading-relaxed mb-6" suppressHydrationWarning>
                  {t("landing.features.algorithm.rag.desc")}
                </p>
                {/* 模拟RAG流程可视化 */}
@@ -569,9 +570,9 @@ export function FeatureSections() {
                  <div className="p-3 bg-indigo-500/20 rounded-lg text-indigo-400">
                    <FiCommand size={32} />
                  </div>
-                 <h3 className="text-2xl font-bold text-white">{t("landing.features.algorithm.prompt.title")}</h3>
+                 <h3 className="text-2xl font-bold text-white" suppressHydrationWarning>{t("landing.features.algorithm.prompt.title")}</h3>
                </div>
-               <p className="text-neutral-400 leading-relaxed mb-6">
+               <p className="text-neutral-400 leading-relaxed mb-6" suppressHydrationWarning>
                  {t("landing.features.algorithm.prompt.desc")}
                </p>
                <div className="flex gap-2">
@@ -602,8 +603,8 @@ export function FeatureSections() {
                 viewport={{ once: true }}
                 className="text-center mb-12"
              >
-               <h3 className="text-2xl font-bold text-white mb-2">{t("landing.features.scenarios.title")}</h3>
-               <p className="text-neutral-400">{t("landing.features.scenarios.subtitle")}</p>
+               <h3 className="text-2xl font-bold text-white mb-2" suppressHydrationWarning>{t("landing.features.scenarios.title")}</h3>
+               <p className="text-neutral-400" suppressHydrationWarning>{t("landing.features.scenarios.subtitle")}</p>
              </motion.div>
              
              <div className="grid md:grid-cols-3 gap-6">
@@ -622,10 +623,10 @@ export function FeatureSections() {
                     <div className={`w-10 h-10 rounded-full bg-${item.color}-500/10 flex items-center justify-center mb-4 text-${item.color}-400`}>
                       <item.icon size={20} />
                     </div>
-                    <h4 className="text-lg font-bold text-white mb-2">
+                    <h4 className="text-lg font-bold text-white mb-2" suppressHydrationWarning>
                       {t(`landing.features.scenarios.${item.key}.title`)}
                     </h4>
-                    <p className="text-sm text-neutral-400">
+                    <p className="text-sm text-neutral-400" suppressHydrationWarning>
                       {t(`landing.features.scenarios.${item.key}.desc`)}
                     </p>
                   </motion.div>
@@ -641,8 +642,8 @@ export function FeatureSections() {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h3 className="text-2xl font-bold text-white mb-2">{t("landing.features.metrics.title")}</h3>
-              <p className="text-neutral-400">{t("landing.features.metrics.subtitle")}</p>
+              <h3 className="text-2xl font-bold text-white mb-2" suppressHydrationWarning>{t("landing.features.metrics.title")}</h3>
+              <p className="text-neutral-400" suppressHydrationWarning>{t("landing.features.metrics.subtitle")}</p>
             </motion.div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
@@ -659,7 +660,7 @@ export function FeatureSections() {
                   className="p-4"
                 >
                   <div className={`text-4xl md:text-5xl font-bold ${stat.color} mb-2`}>{stat.value}</div>
-                  <div className="text-neutral-400 flex items-center justify-center gap-2">
+                  <div className="text-neutral-400 flex items-center justify-center gap-2" suppressHydrationWarning>
                     <stat.icon size={16} />
                     {stat.label}
                   </div>
@@ -688,11 +689,12 @@ export function FeatureSections() {
           >
             <h2 
               className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-indigo-200 bg-clip-text text-transparent"
+              suppressHydrationWarning
             >
               {t("landing.contact.title")}
             </h2>
             
-            <p className="text-xl text-neutral-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-xl text-neutral-400 max-w-2xl mx-auto mb-12 leading-relaxed" suppressHydrationWarning>
               {t("landing.contact.subtitle")}
             </p>
           </motion.div>

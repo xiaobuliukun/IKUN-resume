@@ -19,6 +19,7 @@ import { useTranslation, Trans } from 'react-i18next';
 
 export default function Settings() {
   const { t } = useTranslation();
+  const [isMounted, setIsMounted] = React.useState(false);
   const {
     apiKey,
     baseUrl,
@@ -36,7 +37,10 @@ export default function Settings() {
 
   useEffect(() => {
     loadSettings();
+    setIsMounted(true);
   }, [loadSettings]);
+
+  if (!isMounted) return null;
 
   const handleSave = () => {
     saveSettings();

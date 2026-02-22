@@ -609,7 +609,9 @@
     },
     "success": "Resume imported successfully!",
     "importedName": "{{name}} (Imported)",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "showExample": "Show Example Format",
+    "hideExample": "Hide Example Format"
   },
   "dynamicForm": {
     "fields": {

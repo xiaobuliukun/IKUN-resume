@@ -20,20 +20,38 @@ export async function POST(req: NextRequest) {
         });
 
         const content = response.content;
-        let jsonContent = content;
+        let jsonContent = '';
 
         if (typeof content === 'string') {
-            // Remove markdown code blocks if present
-            jsonContent = content.replace(/```json\n?|\n?```/g, '').trim();
+            // Robust JSON extraction: find the first '{' and the last '}'
+            const firstBrace = content.indexOf('{');
+            const lastBrace = content.lastIndexOf('}');
+            
+            if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+                jsonContent = content.substring(firstBrace, lastBrace + 1);
+            } else {
+                // Fallback: try to clean markdown code blocks if no clear JSON structure found
+                jsonContent = content.replace(/```json\n?|\n?```/g, '').trim();
+            }
+        } else {
+             // Handle non-string content (though unlikely for this agent)
+             jsonContent = JSON.stringify(content);
         }
 
         try {
-            const parsedData = JSON.parse(jsonContent as string);
+            const parsedData = JSON.parse(jsonContent);
             return NextResponse.json(parsedData);
         } catch (parseError) {
-            console.error("JSON Parse Error:", parseError, "Content:", content);
+            console.error("JSON Parse Error:", parseError);
+            console.error("Raw Content:", content);
+            console.error("Extracted Content:", jsonContent);
+            
             return NextResponse.json(
-                { error: 'Failed to parse AI response', rawContent: content },
+                { 
+                    error: 'Failed to parse AI response', 
+                    rawContent: content,
+                    extractedContent: jsonContent
+                },
                 { status: 500 }
             );
         }

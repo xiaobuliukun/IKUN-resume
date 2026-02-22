@@ -13,22 +13,25 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const agent = createMockInterviewAgent(config || {});
+        const agentConfig = config || {};
+        const agent = createMockInterviewAgent(agentConfig);
 
-        const history = messages.slice(0, -1).map((msg: { role: 'user' | 'ai'; content: string; }) => 
+        // Convert messages to LangChain format
+        // messages array is expected to be an array of { role: 'user' | 'ai', content: string }
+        // The last message is the current user input, so we slice it off for history
+        const history = (messages || []).slice(0, -1).map((msg: { role: string; content: string; }) => 
             msg.role === 'user' ? new HumanMessage(msg.content) : new AIMessage(msg.content)
         );
         
-        const lastUserMessage = messages.length > 0 ? messages[messages.length - 1].content : "";
-
-        // If history is empty and lastUserMessage is empty (initial start), use a placeholder to trigger the welcome message
-        const input = lastUserMessage || "Start the interview.";
+        // Get the last user message as input
+        const lastMessage = (messages && messages.length > 0) ? messages[messages.length - 1] : null;
+        const input = (lastMessage && lastMessage.role === 'user') ? lastMessage.content : "Start the interview.";
 
         const stream = await agent.stream({
-            input,
+            input: input,
             chat_history: history,
             resumeData: JSON.stringify(resumeData),
-            jd,
+            jd: jd,
         });
 
         const encoder = new TextEncoder();

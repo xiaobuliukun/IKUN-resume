@@ -188,7 +188,7 @@ export const createCareerAgent = ({
     baseUrl,
     modelName: modelName ?? "gpt-4-turbo",
     temperature: temperature ?? 0.2,
-    maxTokens: 65536,
+    maxTokens: 8192,
   });
 
   const toolOptions = { apiKey, baseUrl, modelName };
@@ -260,7 +260,7 @@ export const createResumeChatAgent = ({
   const llm = getModel({
     apiKey,
     baseUrl,
-    modelName: modelName ?? "gpt-4-turbo",
+    modelName: modelName ?? "gpt-4o",
     temperature: temperature ?? 0.7,
     maxTokens: maxTokens ?? 4096,
     streaming: true,
@@ -296,7 +296,7 @@ export const createCareerPathAgent = ({
   const llm = getModel({
     apiKey,
     baseUrl,
-    modelName: modelName ?? "gpt-4-turbo",
+    modelName: modelName ?? "gpt-4o",
     temperature: temperature ?? 0.2,
     maxTokens: 4096,
   });

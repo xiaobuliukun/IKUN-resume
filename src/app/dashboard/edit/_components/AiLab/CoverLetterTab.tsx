@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Button } from "@/app/components/ui/button";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Resume } from '@/store/useResumeStore';
+import { useSettingStore } from '@/store/useSettingStore';
 import { Loader2, Mail, Copy, Check } from 'lucide-react';
-import { ScrollArea } from "@/app/components/ui/scroll-area";
+// import { ScrollArea } from "@/app/components/ui/scroll-area";
 import ReactMarkdown from 'react-markdown';
 import { toast } from 'sonner';
 
@@ -19,6 +20,7 @@ export default function CoverLetterTab({ resumeData, isAiJobRunning, setIsAiJobR
   const [jd, setJd] = useState('');
   const [coverLetter, setCoverLetter] = useState('');
   const [isCopied, setIsCopied] = useState(false);
+  const { apiKey, model, baseUrl } = useSettingStore();
 
   const handleGenerate = async () => {
     if (!jd.trim()) return;
@@ -32,6 +34,11 @@ export default function CoverLetterTab({ resumeData, isAiJobRunning, setIsAiJobR
         body: JSON.stringify({
           jd,
           resumeData,
+          config: {
+            apiKey,
+            modelName: model,
+            baseUrl
+          }
         }),
       });
 

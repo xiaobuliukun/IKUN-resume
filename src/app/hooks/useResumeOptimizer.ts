@@ -248,7 +248,7 @@ export const useResumeOptimizer = () => {
     setLogs(() => initialLogs);
 
     try {
-      const config = { apiKey, baseUrl, modelName: model, maxTokens };
+      const config = { apiKey, baseUrl, modelName: model, maxTokens: 8192 };
 
       const researchResponse = await fetch(`${nextUrl}/optimizer-agent/research`, {
         method: 'POST',

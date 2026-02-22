@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Resume, Section } from '@/store/useResumeStore';
+import { Resume, Section, useResumeStore } from '@/store/useResumeStore';
 import { useTranslation } from 'react-i18next';
 import { Textarea } from '@/app/components/ui/textarea';
 import { Button } from '@/app/components/ui/button';
@@ -8,6 +8,7 @@ import { LogItem } from './LogItem';
 import { useResumeOptimizer } from '@/app/hooks/useResumeOptimizer';
 import ResumePreview from '../ResumePreview';
 import { trackEvent } from '@/app/components/Analytics';
+import { toast } from 'sonner';
 
 import { EditorComponents } from '@/lib/componentOptimization';
 
@@ -24,6 +25,7 @@ type OptimizeTabProps = {
 export default function OptimizeTab({ resumeData, onApplyChanges, templateId, isAiJobRunning, setIsAiJobRunning }: OptimizeTabProps) {
   const { t } = useTranslation();
   const [isPreview, setIsPreview] = useState(false);
+  const { saveResume } = useResumeStore();
   
   const {
     isLoading,
@@ -53,7 +55,7 @@ export default function OptimizeTab({ resumeData, onApplyChanges, templateId, is
     runOptimization({ jd, resumeData });
   };
   
-  const handleApply = () => {
+  const handleApply = async () => {
     if (optimizedResume) {
       // 追踪优化结果应用
       trackEvent('ai_optimization_applied', {
@@ -61,7 +63,17 @@ export default function OptimizeTab({ resumeData, onApplyChanges, templateId, is
         sections_optimized: Object.keys(optimizedResume.sections || {}).length
       });
       
+      // 1. 更新内存状态
       onApplyChanges(optimizedResume.sections);
+
+      // 2. 强制保存到数据库
+      if (resumeData.id) {
+        // 使用 setTimeout 确保 onApplyChanges 的状态更新已完成（虽然 Zustand 是同步的，但这能让 UI 渲染更平滑）
+        setTimeout(async () => {
+            await saveResume(resumeData.id);
+            toast.success("优化结果已应用并自动保存！");
+        }, 100);
+      }
     }
   };
 

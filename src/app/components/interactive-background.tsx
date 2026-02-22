@@ -1,12 +1,14 @@
 "use client";
 
 import * as THREE from 'three';
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Points, Sphere } from '@react-three/drei';
 
 // 性能检测
 const getDevicePerformance = () => {
+  if (typeof window === 'undefined') return 'low';
+  
   const canvas = document.createElement('canvas');
   const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
   if (!gl) return 'low';
@@ -31,7 +33,9 @@ function OptimizedStars(props: { count?: number }) {
   const performance = useMemo(() => getDevicePerformance(), []);
   const { count = performance === 'high' ? 3000 : 1500 } = props;
 
-  const positions = useMemo(() => {
+  const [positions, setPositions] = useState<Float32Array | null>(null);
+  
+  useEffect(() => {
     const posArray = [];
     
     for (let i = 0; i < count; i++) {
@@ -41,20 +45,10 @@ function OptimizedStars(props: { count?: number }) {
       posArray.push((Math.random() - 0.5) * 12);
     }
     
-    return new Float32Array(posArray);
+    setPositions(new Float32Array(posArray));
   }, [count]);
 
-  useFrame((state, delta) => {
-    if (ref.current) {
-      // 简化旋转计算
-      ref.current.rotation.x -= delta * 0.03;
-      ref.current.rotation.y -= delta * 0.02;
-      
-      // 简化呼吸效果
-      const material = ref.current.material as THREE.PointsMaterial;
-      material.opacity = 0.6 + Math.sin(state.clock.getElapsedTime()) * 0.1;
-    }
-  });
+  if (!positions) return null;
 
   return (
     <group rotation={[0, 0, Math.PI / 6]}>
@@ -68,8 +62,24 @@ function OptimizedStars(props: { count?: number }) {
           blending={THREE.AdditiveBlending}
         />
       </Points>
+      <AnimationLoop pointsRef={ref} />
     </group>
   );
+}
+
+function AnimationLoop({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | null> }) {
+  useFrame((state, delta) => {
+    if (pointsRef.current) {
+      // 简化旋转计算
+      pointsRef.current.rotation.x -= delta * 0.03;
+      pointsRef.current.rotation.y -= delta * 0.02;
+      
+      // 简化呼吸效果
+      const material = pointsRef.current.material as THREE.PointsMaterial;
+      material.opacity = 0.6 + Math.sin(state.clock.getElapsedTime()) * 0.1;
+    }
+  });
+  return null;
 }
 
 // 简化的浮动几何体

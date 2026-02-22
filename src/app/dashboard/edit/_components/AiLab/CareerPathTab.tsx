@@ -4,6 +4,7 @@ import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Resume } from '@/store/useResumeStore';
+import { useSettingStore } from '@/store/useSettingStore';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Legend } from 'recharts';
 import { Loader2, Map, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -35,6 +36,7 @@ export default function CareerPathTab({ resumeData, isAiJobRunning, setIsAiJobRu
   const { t } = useTranslation();
   const [targetRole, setTargetRole] = useState('');
   const [result, setResult] = useState<CareerAnalysisResult | null>(null);
+  const { apiKey, model, baseUrl } = useSettingStore();
 
   const handleAnalyze = async () => {
     setIsAiJobRunning(true);
@@ -46,6 +48,11 @@ export default function CareerPathTab({ resumeData, isAiJobRunning, setIsAiJobRu
         body: JSON.stringify({
           resumeData,
           targetRole,
+          config: {
+            apiKey,
+            modelName: model,
+            baseUrl
+          }
         }),
       });
 
