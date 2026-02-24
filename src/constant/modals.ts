@@ -8,4 +8,10 @@ export const MODEL_API_URL_MAP: Record<string, string> = {
   'qwen-plus': 'https://dashscope.aliyuncs.com/compatible-mode/v1',
   'qwen-max': 'https://dashscope.aliyuncs.com/compatible-mode/v1',
   'qwen-long': 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+  'qwen3.5-plus': 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+  'qwen3.5-plus-2026-02-15': 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+  'qwen3.5-397b-a17b': 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+  'qwen3-coder-plus': 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+  'qwen-flash': 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+  'qwen-vl-max': 'https://dashscope.aliyuncs.com/compatible-mode/v1',
 };
