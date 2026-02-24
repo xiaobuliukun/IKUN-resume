@@ -43,7 +43,13 @@ export default function RenameResumeDialog({
           />
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>{t('renameDialog.cancel')}</Button>
+          <Button
+            variant="outline"
+            onClick={() => onOpenChange(false)}
+            className="border-neutral-600 bg-transparent text-neutral-300 hover:bg-neutral-800 hover:text-white"
+          >
+            {t('renameDialog.cancel')}
+          </Button>
           <Button onClick={handleRename}>{t('renameDialog.rename')}</Button>
         </DialogFooter>
       </DialogContent>

@@ -81,6 +81,28 @@ export const classicTemplate: MagicTemplateDSL = {
       }
     },
     {
+      id: "summary-section",
+      type: "DefaultSection",
+      dataBinding: "sections.summary",
+      position: {
+        area: "main"
+      },
+      props: {
+        title: "Summary",
+        titleClassName: "font-bold text-primary text-[1.2em] text-blue-500",
+        containerClassName: "space-y-2"
+      },
+      fieldMap: {
+        mainTitle: [],
+        mainSubtitle: [],
+        secondarySubtitle: [],
+        sideTitle: [],
+        sideSubtitle: [],
+        secondarySideSubtitle: [],
+        description: ["summary", "description"]
+      }
+    },
+    {
       id: "experience-section",
       type: "DefaultSection",
       dataBinding: "sections.experience",

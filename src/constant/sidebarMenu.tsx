@@ -1,4 +1,4 @@
-import { FaBook, FaBriefcase, FaCertificate,FaGraduationCap, FaLanguage, FaLayerGroup } from "react-icons/fa";
+import { FaBook, FaBriefcase, FaCertificate, FaGraduationCap, FaLanguage, FaLayerGroup, FaAlignLeft } from "react-icons/fa";
 import { ComponentType } from 'react';
 import { SectionItem } from "@/store/useResumeStore";
 import { dynamicFormFields, FieldConfig } from "./dynamicFormFields";
@@ -9,9 +9,10 @@ export type SidebarMenuItem = {
   label: string;
   formFields?: FieldConfig[];
   itemRender?: (item: SectionItem) => React.ReactNode;
+  maxItems?: number;
 };
 
-// 菜单栏配置
+// 菜单栏配置（个人总结默认在最后）
 const sidebarMenu: SidebarMenuItem[] = [
   {
     key: 'projects',
@@ -65,6 +66,19 @@ const sidebarMenu: SidebarMenuItem[] = [
         <div className="text-xs text-neutral-400">{item.location}</div>
       </div>
     )
+  },
+  {
+    key: 'summary',
+    icon: FaAlignLeft,
+    label: 'sections.summary',
+    formFields: dynamicFormFields.summary,
+    itemRender: (item) => {
+      const text = (item.summary as string) || '';
+      const stripped = text.replace(/<[^>]*>/g, '').trim();
+      const preview = stripped.length > 60 ? stripped.slice(0, 60) + '...' : stripped;
+      return <div className="text-sm text-neutral-300 max-w-[155px] line-clamp-2">{preview || '—'}</div>;
+    },
+    maxItems: 1,
   },
   // {
   //   key: 'profiles',

@@ -133,6 +133,7 @@ interface SectionListWithModalProps<T extends BaseItem> {
   itemRender?: (item: T) => React.ReactNode;
   className?: string;
   onModalStateChange?: (isOpen: boolean) => void;
+  maxItems?: number;
 }
 
 export default function SectionListWithModal<T extends BaseItem>({
@@ -146,6 +147,7 @@ export default function SectionListWithModal<T extends BaseItem>({
   itemRender,
   className,
   onModalStateChange,
+  maxItems,
 }: SectionListWithModalProps<T>) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState<T | null>(null);
@@ -287,9 +289,11 @@ export default function SectionListWithModal<T extends BaseItem>({
         </DndContext>
       </div>
 
-      <Button variant="outline" onClick={() => handleOpenModal(null, null)} className="inline-flex w-full scale-100 items-center justify-center rounded-sm text-sm font-medium ring-offset-background transition-[transform,background-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50 border border-secondary bg-transparent hover:text-secondary-foreground h-9 px-5 gap-x-2 border-dashed py-6 leading-relaxed hover:bg-secondary-accent" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
-        <FaPlus className="mr-2" />  {t('sections.shared.addItem')}
-      </Button>
+      {(!maxItems || items.length < maxItems) && (
+        <Button variant="outline" onClick={() => handleOpenModal(null, null)} className="inline-flex w-full scale-100 items-center justify-center rounded-sm text-sm font-medium ring-offset-background transition-[transform,background-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50 border border-secondary bg-transparent hover:text-secondary-foreground h-9 px-5 gap-x-2 border-dashed py-6 leading-relaxed hover:bg-secondary-accent" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
+          <FaPlus className="mr-2" />  {t('sections.shared.addItem')}
+        </Button>
+      )}
       <Modal
         isOpen={isOpen}
         onClose={handleCloseModal}
@@ -321,7 +325,13 @@ export default function SectionListWithModal<T extends BaseItem>({
           />
         </div>
         <div className="mt-6 flex justify-end gap-2">
-          <Button variant="outline" onClick={handleCloseModal}>{t('modals.dynamicForm.cancelButton')}</Button>
+          <Button
+            variant="outline"
+            onClick={handleCloseModal}
+            className="border-neutral-600 bg-transparent text-neutral-300 hover:bg-neutral-800 hover:text-white"
+          >
+            {t('modals.dynamicForm.cancelButton')}
+          </Button>
           <Button onClick={handleSave}>{t('modals.dynamicForm.saveButton')}</Button>
         </div>
       </Modal>

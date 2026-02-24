@@ -231,19 +231,22 @@ const useResumeStore = create<ResumeState>((set, get) => ({
         const updatedResumes = get().resumes;
         const resume = updatedResumes.find(r => r.id === id);
         if (resume) {
-          // Data migration on the fly: Ensure 'basics' section exists
-          if (!resume.sectionOrder.find(s => s.key === 'basics')) {
-            const migratedResume = {
-              ...resume,
-              sectionOrder: [
-                { key: 'basics', label: 'Basics' },
-                ...resume.sectionOrder,
-              ],
-            };
-            set({ activeResume: migratedResume });
-          } else {
-            set({ activeResume: { ...resume } });
+          // Data migration: ensure 'basics' and 'summary' exist, 个人总结固定在最后
+          let migratedSectionOrder = [...resume.sectionOrder];
+          let migratedSections = { ...resume.sections };
+          if (!migratedSectionOrder.find(s => s.key === 'basics')) {
+            migratedSectionOrder = [{ key: 'basics', label: 'Basics' }, ...migratedSectionOrder];
           }
+          if (!migratedSectionOrder.find(s => s.key === 'summary')) {
+            migratedSectionOrder = [...migratedSectionOrder, { key: 'summary', label: 'sections.summary' }];
+            if (!migratedSections.summary) migratedSections = { ...migratedSections, summary: [] };
+          } else {
+            // summary 已存在但可能不在最后，移到末尾
+            const summaryItem = migratedSectionOrder.find(s => s.key === 'summary')!;
+            migratedSectionOrder = [...migratedSectionOrder.filter(s => s.key !== 'summary'), summaryItem];
+          }
+          const needsMigration = JSON.stringify(migratedSectionOrder) !== JSON.stringify(resume.sectionOrder) || (migratedSections.summary !== undefined && resume.sections.summary === undefined);
+          set({ activeResume: needsMigration ? { ...resume, sectionOrder: migratedSectionOrder, sections: migratedSections } : { ...resume } });
         } else {
           MagicDebugger.warn(`Resume with id ${id} not found.`);
         }
@@ -254,19 +257,22 @@ const useResumeStore = create<ResumeState>((set, get) => ({
     // 如果数据已经加载完成，直接查找
     const resume = resumes.find(r => r.id === id);
     if (resume) {
-      // Data migration on the fly: Ensure 'basics' section exists
-      if (!resume.sectionOrder.find(s => s.key === 'basics')) {
-        const migratedResume = {
-          ...resume,
-          sectionOrder: [
-            { key: 'basics', label: 'Basics' },
-            ...resume.sectionOrder,
-          ],
-        };
-        set({ activeResume: migratedResume });
-      } else {
-        set({ activeResume: { ...resume } });
+      // Data migration: ensure 'basics' and 'summary' exist, 个人总结固定在最后
+      let migratedSectionOrder = [...resume.sectionOrder];
+      let migratedSections = { ...resume.sections };
+      if (!migratedSectionOrder.find(s => s.key === 'basics')) {
+        migratedSectionOrder = [{ key: 'basics', label: 'Basics' }, ...migratedSectionOrder];
       }
+      if (!migratedSectionOrder.find(s => s.key === 'summary')) {
+        migratedSectionOrder = [...migratedSectionOrder, { key: 'summary', label: 'sections.summary' }];
+        if (!migratedSections.summary) migratedSections = { ...migratedSections, summary: [] };
+      } else {
+        // summary 已存在但可能不在最后，移到末尾
+        const summaryItem = migratedSectionOrder.find(s => s.key === 'summary')!;
+        migratedSectionOrder = [...migratedSectionOrder.filter(s => s.key !== 'summary'), summaryItem];
+      }
+      const needsMigration = JSON.stringify(migratedSectionOrder) !== JSON.stringify(resume.sectionOrder) || (migratedSections.summary !== undefined && resume.sections.summary === undefined);
+      set({ activeResume: needsMigration ? { ...resume, sectionOrder: migratedSectionOrder, sections: migratedSections } : { ...resume } });
     } else {
       MagicDebugger.warn(`Resume with id ${id} not found.`);
     }
@@ -329,12 +335,10 @@ const useResumeStore = create<ResumeState>((set, get) => ({
   },
 
   updateTemplate: (template) => {
-    set(state => {
-      if (!state.activeResume) return state;
-      return {
-        activeResume: { ...state.activeResume, template }
-      };
-    });
+    const { activeResume, updateResume } = get();
+    if (!activeResume) return;
+    // 同时更新内存和持久化到 IndexedDB，避免刷新后模板恢复默认
+    updateResume(activeResume.id, { template });
   },
 
   updateCustomTemplate: (customTemplate) => {

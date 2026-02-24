@@ -442,6 +442,7 @@
     "resetZoom": "Reset Zoom"
   },
   "sections": {
+    "summary": "Personal Summary",
     "projects": "Projects",
     "education": "Education",
     "skills": "Skills",
@@ -449,6 +450,7 @@
     "certificates": "Certificates",
     "experience": "Experience",
     "profiles": "Profiles",
+    "awards": "Awards",
     "shared": {
       "untitled": "Untitled",
       "show": "Show",

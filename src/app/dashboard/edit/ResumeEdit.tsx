@@ -271,6 +271,7 @@ export default function ResumeEdit({ id: propId }: { id?: string }) {
                       setItems={(items) => updateSectionItems(key, items as SectionItem[])}
                       className={isLast ? 'mb-0' : ''}
                       onModalStateChange={setIsAnyModalOpen}
+                      maxItems={sidebarMenu.find(s => s.key === key)?.maxItems}
                     />
                   </div>
                 )}

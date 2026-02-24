@@ -51,7 +51,11 @@ const certificatesFields: FieldConfig[] = [
     { key: 'date', labelKey: 'dynamicForm.fields.certificates.date.label', type: 'input', placeholderKey: 'dynamicForm.fields.certificates.date.placeholder' },
 ];
 
+// 个人总结：仅富文本，无额外表单字段
+const summaryFields: FieldConfig[] = [];
+
 export const dynamicFormFields: Record<string, FieldConfig[]> = {
+    summary: summaryFields,
     education: educationFields,
     experience: experienceFields,
     // profiles: profilesFields,

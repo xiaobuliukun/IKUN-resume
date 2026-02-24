@@ -81,6 +81,29 @@ export const dittoTemplate: MagicTemplateDSL = {
       }
     },
     {
+      id: "summary-section",
+      type: "DefaultSection",
+      dataBinding: "sections.summary",
+      position: { area: "main" },
+      props: { title: "Summary", titleClassName: "font-bold text-[1.1em]", containerClassName: "space-y-2" },
+      fieldMap: {
+        mainTitle: [],
+        mainSubtitle: [],
+        secondarySubtitle: [],
+        sideTitle: [],
+        sideSubtitle: [],
+        secondarySideSubtitle: [],
+        description: ["summary", "description"]
+      },
+      style: {
+        backgroundColor: "#ffffff",
+        borderRadius: "0.75rem",
+        padding: "2rem",
+        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
+        border: "1px solid #e5e7eb"
+      }
+    },
+    {
       id: "experience-card",
       type: "Timeline",
       dataBinding: "sections.experience",

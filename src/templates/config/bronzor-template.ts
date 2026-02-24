@@ -78,6 +78,22 @@ export const bronzorTemplate: MagicTemplateDSL = {
       }
     },
     {
+      id: "summary-section",
+      type: "DefaultSection",
+      dataBinding: "sections.summary",
+      position: { area: "main" },
+      props: { title: "Summary", titleClassName: "font-bold text-[1.1em]", containerClassName: "space-y-2" },
+      fieldMap: {
+        mainTitle: [],
+        mainSubtitle: [],
+        secondarySubtitle: [],
+        sideTitle: [],
+        sideSubtitle: [],
+        secondarySideSubtitle: [],
+        description: ["summary", "description"]
+      }
+    },
+    {
       id: "experience-section",
       type: "Timeline",
       dataBinding: "sections.experience",

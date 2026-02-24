@@ -433,6 +433,7 @@
     "resetZoom": "重置缩放"
   },
   "sections": {
+    "summary": "个人总结",
     "projects": "项目",
     "education": "教育",
     "skills": "技能",
@@ -440,6 +441,7 @@
     "certificates": "证书",
     "experience": "经历",
     "profiles": "个人资料",
+    "awards": "荣誉奖项",
     "shared": {
       "untitled": "无标题",
       "show": "显示",

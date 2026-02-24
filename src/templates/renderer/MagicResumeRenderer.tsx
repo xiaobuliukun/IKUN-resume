@@ -1,7 +1,10 @@
+"use client";
+
 import React from 'react';
 import { MagicTemplateDSL, ComponentDefinition } from '../types/magic-dsl';
 import { Resume } from '@/store/useResumeStore';
 import get from 'lodash.get';
+import { useTranslation } from 'react-i18next';
 
 // 导入所有组件
 import { Header } from '../templateLayout/Header';
@@ -115,7 +118,17 @@ function ComponentWrapper({
   );
 }
 
+// 根据 dataBinding 获取 i18n 翻译 key，如 sections.experience -> sections.experience
+function getSectionTitleKey(dataBinding: string): string | null {
+  if (dataBinding?.startsWith('sections.')) {
+    const sectionKey = dataBinding.replace('sections.', '');
+    return `sections.${sectionKey}`;
+  }
+  return null;
+}
+
 export function MagicResumeRenderer({ template, data }: Props) {
+  const { t } = useTranslation();
   const { layout, designTokens, components } = template;
   
   // 生成CSS变量
@@ -185,14 +198,21 @@ export function MagicResumeRenderer({ template, data }: Props) {
             }
           }
 
+          // 优先使用 i18n 翻译的 section 标题，适配当前语言（中/英）
+          const sectionTitleKey = getSectionTitleKey(component.dataBinding);
+          const translatedTitle = sectionTitleKey ? t(sectionTitleKey) : null;
+          const displayTitle = translatedTitle && translatedTitle !== sectionTitleKey
+            ? translatedTitle
+            : (component.props?.title || 'Section');
+
           const props = {
             data: sectionData,
             items: Array.isArray(sectionData) ? sectionData : [],
             fieldMap: component.fieldMap,
             style: component.style,
             position: component.position,
-            title: component.props?.title || 'Section',
             ...component.props,
+            title: displayTitle, // 使用 i18n 翻译，覆盖模板中的硬编码英文
           };
 
           return (
