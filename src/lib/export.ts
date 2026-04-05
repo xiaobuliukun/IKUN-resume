@@ -23,3 +23,100 @@ export const oklchToRgb = (l: number, c: number, h: number) => {
 
     return [r * 255, g * 255, bl * 255];
   }
+
+const stripMarkdown = (text: string) => {
+    return text
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/\*\*(.*?)\*\*/g, '$1')
+      .replace(/\*(.*?)\*/g, '$1')
+      .replace(/_(.*?)_/g, '$1')
+      .replace(/`{1,3}(.*?)`{1,3}/g, '$1')
+      .replace(/!\[.*?\]\(.*?\)/g, '')
+      .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+      .replace(/^\s*[-*+]\s+/gm, '- ')
+      .replace(/^\s*\d+\.\s+/gm, '')
+      .replace(/^>\s?/gm, '')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+}
+
+const sanitizeFileName = (fileName: string) => {
+    return fileName
+      .replace(/[\\/:*?"<>|]/g, '-')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+      .toLowerCase();
+}
+
+interface ExportPdfOptions {
+    title: string;
+    content: string;
+    fileName: string;
+    metadata?: Array<{ label: string; value: string }>;
+}
+
+export const exportTextContentToPdf = async ({
+    title,
+    content,
+    fileName,
+    metadata = [],
+}: ExportPdfOptions) => {
+    const { jsPDF } = await import('jspdf');
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'pt',
+      format: 'a4',
+    });
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 48;
+    const usableWidth = pageWidth - margin * 2;
+    const bottomLimit = pageHeight - margin;
+    let cursorY = margin;
+
+    const ensureSpace = (neededHeight: number) => {
+      if (cursorY + neededHeight <= bottomLimit) return;
+      doc.addPage();
+      cursorY = margin;
+    };
+
+    doc.setTextColor(15, 23, 42);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.text(title, margin, cursorY);
+    cursorY += 28;
+
+    if (metadata.length > 0) {
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.setTextColor(71, 85, 105);
+
+      metadata.forEach((item) => {
+        if (!item.value.trim()) return;
+        const lines = doc.splitTextToSize(`${item.label}: ${item.value}`, usableWidth);
+        ensureSpace(lines.length * 14);
+        doc.text(lines, margin, cursorY);
+        cursorY += lines.length * 14;
+      });
+
+      cursorY += 10;
+    }
+
+    const plainContent = stripMarkdown(content);
+    const paragraphs = plainContent.split(/\n{2,}/).filter(Boolean);
+
+    doc.setFont('times', 'normal');
+    doc.setFontSize(12);
+    doc.setTextColor(30, 41, 59);
+
+    paragraphs.forEach((paragraph) => {
+      const lines = doc.splitTextToSize(paragraph.trim(), usableWidth);
+      ensureSpace(lines.length * 18 + 8);
+      doc.text(lines, margin, cursorY);
+      cursorY += lines.length * 18 + 8;
+    });
+
+    doc.save(`${sanitizeFileName(fileName) || 'cover-letter'}.pdf`);
+}

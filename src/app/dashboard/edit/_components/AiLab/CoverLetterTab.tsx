@@ -4,10 +4,11 @@ import { Button } from "@/app/components/ui/button";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Resume } from '@/store/useResumeStore';
 import { useSettingStore } from '@/store/useSettingStore';
-import { Loader2, Mail, Copy, Check } from 'lucide-react';
+import { Loader2, Mail, Copy, Check, Download } from 'lucide-react';
 // import { ScrollArea } from "@/app/components/ui/scroll-area";
 import ReactMarkdown from 'react-markdown';
 import { toast } from 'sonner';
+import { exportTextContentToPdf } from '@/lib/export';
 
 interface CoverLetterTabProps {
   resumeData: Resume;
@@ -20,6 +21,7 @@ export default function CoverLetterTab({ resumeData, isAiJobRunning, setIsAiJobR
   const [jd, setJd] = useState('');
   const [coverLetter, setCoverLetter] = useState('');
   const [isCopied, setIsCopied] = useState(false);
+  const [isExportingPdf, setIsExportingPdf] = useState(false);
   const { apiKey, model, baseUrl } = useSettingStore();
 
   const handleGenerate = async () => {
@@ -60,6 +62,37 @@ export default function CoverLetterTab({ resumeData, isAiJobRunning, setIsAiJobR
     setTimeout(() => setIsCopied(false), 2000);
   };
 
+  const handleExportPdf = async () => {
+    if (!coverLetter.trim()) return;
+
+    const candidateName = resumeData?.info?.fullName || resumeData?.name || 'cover-letter';
+
+    setIsExportingPdf(true);
+    try {
+      await exportTextContentToPdf({
+        title: t('modals.aiModal.coverLetter.outputTitle') || 'Generated Cover Letter',
+        content: coverLetter,
+        fileName: `${candidateName}-cover-letter`,
+        metadata: [
+          {
+            label: t('modals.aiModal.coverLetter.inputTitle') || 'Job Description',
+            value: jd.trim(),
+          },
+          {
+            label: t('modals.aiModal.coverLetter.candidateName') || 'Candidate',
+            value: candidateName,
+          },
+        ],
+      });
+      toast.success(t('modals.aiModal.coverLetter.exportSuccess') || 'PDF exported successfully');
+    } catch (error) {
+      console.error(error);
+      toast.error(t('modals.aiModal.coverLetter.exportError') || 'Failed to export PDF');
+    } finally {
+      setIsExportingPdf(false);
+    }
+  };
+
   return (
     <div className="flex flex-col h-full py-6 gap-6">
       <div className="flex gap-6 h-full">
@@ -98,10 +131,26 @@ export default function CoverLetterTab({ resumeData, isAiJobRunning, setIsAiJobR
                 {t('modals.aiModal.coverLetter.outputTitle') || 'Generated Cover Letter'}
              </h3>
              {coverLetter && (
-                 <Button variant="ghost" size="sm" onClick={handleCopy} className="text-slate-500 hover:text-slate-900">
-                    {isCopied ? <Check className="w-4 h-4 mr-1" /> : <Copy className="w-4 h-4 mr-1" />}
-                    {isCopied ? 'Copied' : 'Copy'}
-                 </Button>
+                 <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleExportPdf}
+                      disabled={isExportingPdf}
+                      className="text-slate-600 hover:text-slate-900"
+                    >
+                      {isExportingPdf ? (
+                        <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+                      ) : (
+                        <Download className="mr-1 h-4 w-4" />
+                      )}
+                      {isExportingPdf ? 'Exporting...' : 'Export PDF'}
+                    </Button>
+                    <Button variant="ghost" size="sm" onClick={handleCopy} className="text-slate-500 hover:text-slate-900">
+                      {isCopied ? <Check className="w-4 h-4 mr-1" /> : <Copy className="w-4 h-4 mr-1" />}
+                      {isCopied ? 'Copied' : 'Copy'}
+                    </Button>
+                 </div>
              )}
           </div>
           <div className="flex-1 overflow-y-auto p-6">
