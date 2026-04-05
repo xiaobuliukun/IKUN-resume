@@ -28,7 +28,7 @@ export function Tools({ isMobile, zoomIn, zoomOut, resetTransform, onShowAI, rig
       className={cn(
         "z-20 flex gap-2 overflow-hidden",
         isMobile
-          ? "fixed bottom-6 left-1/2 -translate-x-1/2 flex-row p-2 rounded-full bg-neutral-900/70 border border-neutral-700 backdrop-blur-sm"
+          ? "fixed bottom-6 left-1/2 -translate-x-1/2 flex-row rounded-full border border-slate-200 bg-white/90 p-2 shadow-lg backdrop-blur-sm"
           : "fixed bottom-10 flex-col transition-all duration-300"
       )}
       style={!isMobile ? { right: desktopRightPosition } : undefined}
@@ -37,7 +37,7 @@ export function Tools({ isMobile, zoomIn, zoomOut, resetTransform, onShowAI, rig
       {!isMobile && (
         <>
           <button
-            className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-white hover:bg-neutral-700 transition"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
             title={t('tools.aiAssistant')}
             type="button"
             onClick={onShowAI}
@@ -48,7 +48,7 @@ export function Tools({ isMobile, zoomIn, zoomOut, resetTransform, onShowAI, rig
       )}
       
       <button
-        className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-white hover:bg-neutral-700 transition"
+        className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
         onClick={() => {
           if (onExport) {
             onExport();
@@ -60,7 +60,7 @@ export function Tools({ isMobile, zoomIn, zoomOut, resetTransform, onShowAI, rig
         <DownloadIcon />
       </button>
       <button
-        className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-white hover:bg-neutral-700 transition"
+        className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
         onClick={() => zoomIn()}
         title={t('tools.zoomIn')}
         type="button"
@@ -68,7 +68,7 @@ export function Tools({ isMobile, zoomIn, zoomOut, resetTransform, onShowAI, rig
         <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 5v14m7-7H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
       </button>
       <button
-        className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-white hover:bg-neutral-700 transition"
+        className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
         onClick={() => zoomOut()}
         title={t('tools.zoomOut')}
         type="button"
@@ -76,7 +76,7 @@ export function Tools({ isMobile, zoomIn, zoomOut, resetTransform, onShowAI, rig
         <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
       </button>
       <button
-        className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-white hover:bg-neutral-700 transition"
+        className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
         onClick={() => resetTransform()}
         title={t('tools.resetZoom')}
         type="button"

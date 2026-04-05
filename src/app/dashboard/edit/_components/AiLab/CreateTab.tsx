@@ -53,14 +53,14 @@ export default function CreateTab({ onApplyChanges, isAiJobRunning, setIsAiJobRu
 
     return (
         <div className="flex gap-6 mt-6 h-[61vh]">
-            <div className={`bg-neutral-900 rounded-lg border border-neutral-800 flex flex-col h-full ${showPreview ? 'w-1/2' : 'w-full'} transition-all duration-300`}>
-                <div className="p-4 border-b border-neutral-800 flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-neutral-300 flex items-center">
+            <div className={`flex h-full flex-col rounded-lg border border-slate-200 bg-white ${showPreview ? 'w-1/2' : 'w-full'} transition-all duration-300 shadow-sm`}>
+                <div className="flex items-center justify-between border-b border-slate-200 p-4">
+                    <h3 className="flex items-center text-lg font-semibold text-slate-800">
                         <BotMessageSquare size={18} className="mr-2 text-sky-400" />
                         {t('modals.aiModal.createTab.chatTitle')}
                     </h3>
                     {resumeDraft && (
-                        <Button variant="ghost" size="sm" onClick={() => setShowPreview(!showPreview)} className="text-neutral-400 hover:text-white">
+                        <Button variant="ghost" size="sm" onClick={() => setShowPreview(!showPreview)} className="text-slate-500 hover:text-slate-900">
                             <Eye size={16} className="mr-2" />
                             {showPreview ? t('common.ui.closePreview') : t('common.ui.previewResume')}
                         </Button>
@@ -80,7 +80,7 @@ export default function CreateTab({ onApplyChanges, isAiJobRunning, setIsAiJobRu
                         />
                     )}
                 </div>
-                <div className="p-4 border-t border-neutral-800">
+                <div className="border-t border-slate-200 p-4">
                     <form onSubmit={handleSubmit} className="relative">
                         <Textarea
                             value={input}
@@ -92,7 +92,7 @@ export default function CreateTab({ onApplyChanges, isAiJobRunning, setIsAiJobRu
                                 }
                             }}
                             placeholder={t('modals.aiModal.createTab.inputPlaceholder')}
-                            className="bg-neutral-800 border-neutral-700 rounded-lg focus:ring-sky-500 focus:border-sky-500 resize-none pr-12 py-3"
+                            className="resize-none rounded-lg border-slate-300 bg-white py-3 pr-12 focus:border-sky-500 focus:ring-sky-500"
                             rows={1}
                             disabled={isAiJobRunning}
                         />
@@ -109,9 +109,9 @@ export default function CreateTab({ onApplyChanges, isAiJobRunning, setIsAiJobRu
             </div>
 
             {showPreview && resumeDraft && (
-                <div className="bg-neutral-900 rounded-lg border border-neutral-800 flex flex-col h-full w-1/2 transition-all duration-300">
-                    <div className="p-4 border-b border-neutral-800 flex items-center justify-between">
-                        <h3 className="text-lg font-semibold text-neutral-300 flex items-center">
+                <div className="flex h-full w-1/2 flex-col rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300">
+                    <div className="flex items-center justify-between border-b border-slate-200 p-4">
+                        <h3 className="flex items-center text-lg font-semibold text-slate-800">
                             <FileText size={18} className="mr-2 text-sky-400" />
                             {t('modals.aiModal.createTab.previewTitle')}
                         </h3>
@@ -126,7 +126,7 @@ export default function CreateTab({ onApplyChanges, isAiJobRunning, setIsAiJobRu
                             />
                         </div>
                     </div>
-                    <div className="p-3 border-t border-neutral-800">
+                    <div className="border-t border-slate-200 p-3">
                         <Button onClick={handleApply} className="w-full bg-green-600 hover:bg-green-700 text-white">
                             {t('modals.aiModal.createTab.applyButton')}
                         </Button>

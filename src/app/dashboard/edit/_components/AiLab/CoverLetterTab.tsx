@@ -66,17 +66,17 @@ export default function CoverLetterTab({ resumeData, isAiJobRunning, setIsAiJobR
         {/* Left Side: Input */}
         <div className="w-1/3 flex flex-col gap-4">
           <div className="space-y-2">
-            <h3 className="font-semibold text-white flex items-center gap-2">
+            <h3 className="flex items-center gap-2 font-semibold text-slate-800">
                 <Mail className="text-sky-400 w-4 h-4" />
                 {t('modals.aiModal.coverLetter.inputTitle') || 'Job Description'}
             </h3>
-            <p className="text-xs text-neutral-400">
+            <p className="text-xs text-slate-500">
                 {t('modals.aiModal.coverLetter.inputDesc') || 'Paste the JD here to generate a tailored cover letter.'}
             </p>
           </div>
           <Textarea
             placeholder={t('modals.aiModal.coverLetter.jdPlaceholder') || 'Paste Job Description...'}
-            className="flex-1 bg-neutral-900 border-neutral-800 text-white resize-none"
+            className="flex-1 resize-none border-slate-300 bg-white text-slate-900"
             value={jd}
             onChange={(e) => setJd(e.target.value)}
             disabled={isAiJobRunning}
@@ -92,13 +92,13 @@ export default function CoverLetterTab({ resumeData, isAiJobRunning, setIsAiJobR
         </div>
 
         {/* Right Side: Output */}
-        <div className="flex-1 bg-neutral-900/50 border border-neutral-800 rounded-xl flex flex-col overflow-hidden">
-          <div className="p-4 border-b border-neutral-800 flex justify-between items-center bg-neutral-900">
-             <h3 className="font-semibold text-white">
+        <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 p-4">
+             <h3 className="font-semibold text-slate-800">
                 {t('modals.aiModal.coverLetter.outputTitle') || 'Generated Cover Letter'}
              </h3>
              {coverLetter && (
-                 <Button variant="ghost" size="sm" onClick={handleCopy} className="text-neutral-400 hover:text-white">
+                 <Button variant="ghost" size="sm" onClick={handleCopy} className="text-slate-500 hover:text-slate-900">
                     {isCopied ? <Check className="w-4 h-4 mr-1" /> : <Copy className="w-4 h-4 mr-1" />}
                     {isCopied ? 'Copied' : 'Copy'}
                  </Button>
@@ -106,11 +106,11 @@ export default function CoverLetterTab({ resumeData, isAiJobRunning, setIsAiJobR
           </div>
           <div className="flex-1 overflow-y-auto p-6">
              {coverLetter ? (
-                 <article className="prose prose-invert prose-sm max-w-none">
+                 <article className="prose prose-sm max-w-none">
                      <ReactMarkdown>{coverLetter}</ReactMarkdown>
                  </article>
              ) : (
-                 <div className="h-full flex flex-col items-center justify-center text-neutral-500 space-y-3 opacity-50">
+                 <div className="flex h-full flex-col items-center justify-center space-y-3 text-slate-400 opacity-60">
                     <Mail className="w-12 h-12" />
                     <p>{t('modals.aiModal.coverLetter.emptyState') || 'Your cover letter will appear here'}</p>
                  </div>

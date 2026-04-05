@@ -187,13 +187,13 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
       <div className="flex flex-col h-full items-center justify-center p-6 space-y-6">
         <div className="text-center space-y-2">
           <h2 className="text-2xl font-bold text-sky-400">{t('modals.aiModal.mockInterview.title') || 'AI Mock Interviewer'}</h2>
-          <p className="text-neutral-400 max-w-md">
+          <p className="max-w-md text-slate-500">
             {t('modals.aiModal.mockInterview.description') || 'Paste the job description below to start a realistic mock interview session based on your resume.'}
           </p>
         </div>
         <Textarea
           placeholder={t('modals.aiModal.mockInterview.jdPlaceholder') || 'Paste Job Description here...'}
-          className="min-h-[200px] bg-neutral-900 border-neutral-800 text-white resize-none"
+          className="min-h-[200px] resize-none border-slate-300 bg-white text-slate-900"
           value={jd}
           onChange={(e) => setJd(e.target.value)}
         />
@@ -211,8 +211,8 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
 
   return (
     <div className="flex flex-col h-full">
-      <div className="border-b border-neutral-800 p-4 flex justify-between items-center bg-neutral-900/50">
-        <h3 className="font-semibold text-white flex items-center gap-2">
+      <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 p-4">
+        <h3 className="flex items-center gap-2 font-semibold text-slate-800">
             <Bot className="text-sky-400" />
             {t('modals.aiModal.mockInterview.sessionTitle') || 'Interview Session'}
         </h3>
@@ -220,7 +220,7 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
             variant="ghost" 
             size="sm" 
             onClick={handleEndSession}
-            className="text-neutral-400 hover:text-white"
+            className="text-slate-500 hover:text-slate-900"
         >
             {t('modals.aiModal.mockInterview.endBtn') || 'End Session'}
         </Button>
@@ -238,15 +238,15 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
             >
                 <div className={cn(
                 "w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0",
-                msg.role === 'user' ? "bg-sky-600" : "bg-neutral-700"
+                msg.role === 'user' ? "bg-sky-600" : "bg-slate-200"
                 )}>
-                {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
+                {msg.role === 'user' ? <User size={16} className="text-white" /> : <Bot size={16} className="text-slate-700" />}
                 </div>
                 <div className={cn(
                 "p-3 rounded-2xl text-sm leading-relaxed",
                 msg.role === 'user' 
-                    ? "bg-sky-600/20 text-sky-100 rounded-tr-none" 
-                    : "bg-neutral-800 text-neutral-200 rounded-tl-none"
+                    ? "rounded-tr-none bg-sky-50 text-sky-900" 
+                    : "rounded-tl-none bg-white text-slate-700 border border-slate-200"
                 )}>
                 <ReactMarkdown>{msg.content}</ReactMarkdown>
                 </div>
@@ -254,14 +254,14 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
             ))}
             {isAiJobRunning && messages[messages.length - 1]?.role === 'user' && (
             <div className="flex gap-3 max-w-[85%]">
-                 <div className="w-8 h-8 rounded-full bg-neutral-700 flex items-center justify-center flex-shrink-0">
-                    <Bot size={16} />
+                 <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-slate-200">
+                    <Bot size={16} className="text-slate-700" />
                  </div>
-                 <div className="bg-neutral-800 p-3 rounded-2xl rounded-tl-none flex items-center">
+                 <div className="flex items-center rounded-2xl rounded-tl-none border border-slate-200 bg-white p-3">
                     <span className="flex gap-1">
-                        <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                        <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                        <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400" style={{ animationDelay: '0ms' }} />
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400" style={{ animationDelay: '150ms' }} />
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400" style={{ animationDelay: '300ms' }} />
                     </span>
                  </div>
             </div>
@@ -269,15 +269,15 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
         </div>
       </div>
 
-      <div className="p-4 border-t border-neutral-800 bg-neutral-900/50">
+      <div className="border-t border-slate-200 bg-slate-50 p-4">
         <div className="flex gap-2">
             <Button
                 variant="outline"
                 size="icon"
                 onClick={toggleRecording}
                 className={cn(
-                    "border-neutral-700 hover:bg-neutral-800 transition-colors",
-                    isRecording ? "text-red-500 border-red-500/50 bg-red-500/10" : "text-neutral-400"
+                    "border-slate-300 bg-white transition-colors hover:bg-slate-50",
+                    isRecording ? "border-red-300 bg-red-50 text-red-500" : "text-slate-500"
                 )}
                 title={isRecording ? "Stop Recording" : "Start Recording"}
             >
@@ -293,7 +293,7 @@ export default function MockInterviewTab({ resumeData, isAiJobRunning, setIsAiJo
                     }
                 }}
                 placeholder={t('modals.aiModal.mockInterview.inputPlaceholder') || 'Type your answer...'}
-                className="min-h-[44px] max-h-[120px] bg-neutral-950 border-neutral-700 text-white resize-none py-3"
+                className="min-h-[44px] max-h-[120px] resize-none border-slate-300 bg-white py-3 text-slate-900"
             />
             <Button 
                 onClick={handleSendMessage} 

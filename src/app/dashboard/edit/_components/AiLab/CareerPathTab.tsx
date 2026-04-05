@@ -71,7 +71,7 @@ export default function CareerPathTab({ resumeData, isAiJobRunning, setIsAiJobRu
     <div className="py-6 space-y-6 h-full flex flex-col">
       <div className="space-y-4 flex-none">
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="targetRole" className="text-neutral-300 flex items-center gap-2">
+          <Label htmlFor="targetRole" className="flex items-center gap-2 text-slate-700">
             <Target className="w-4 h-4" />
             {t('modals.aiModal.careerPath.targetRoleLabel') || 'Target Role (Optional)'}
           </Label>
@@ -81,7 +81,7 @@ export default function CareerPathTab({ resumeData, isAiJobRunning, setIsAiJobRu
               placeholder={t('modals.aiModal.careerPath.targetRolePlaceholder') || 'e.g. Senior Product Manager'}
               value={targetRole}
               onChange={(e) => setTargetRole(e.target.value)}
-              className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-500"
+              className="border-slate-300 bg-white text-slate-900 placeholder:text-slate-400"
               disabled={isAiJobRunning}
             />
             <Button 
@@ -104,7 +104,7 @@ export default function CareerPathTab({ resumeData, isAiJobRunning, setIsAiJobRu
             >
             {/* Radar Chart Section */}
             <div className="grid md:grid-cols-2 gap-8">
-                <div className="h-[320px] w-full bg-neutral-900/50 rounded-xl p-4 border border-neutral-800 flex flex-col">
+                <div className="flex h-[320px] w-full flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
                 <h3 className="text-lg font-semibold mb-2 text-center text-sky-400">
                     {t('modals.aiModal.careerPath.skillsGapTitle') || 'Skills Gap Analysis'}
                 </h3>
@@ -135,14 +135,14 @@ export default function CareerPathTab({ resumeData, isAiJobRunning, setIsAiJobRu
                 </div>
 
                 <div className="space-y-4">
-                <div className="bg-neutral-900/50 rounded-xl p-6 border border-neutral-800 h-full flex flex-col">
+                <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
                     <h3 className="text-lg font-semibold mb-4 text-sky-400">{t('modals.aiModal.careerPath.summaryTitle') || 'Analysis Summary'}</h3>
-                    <p className="text-neutral-300 leading-relaxed flex-1">
+                    <p className="flex-1 leading-relaxed text-slate-700">
                     {result.gapAnalysis}
                     </p>
-                    <div className="mt-6 pt-6 border-t border-neutral-800">
-                    <div className="text-sm text-neutral-500">
-                        Target Role: <span className="text-white font-medium">{result.targetRole}</span>
+                    <div className="mt-6 border-t border-slate-200 pt-6">
+                    <div className="text-sm text-slate-500">
+                        Target Role: <span className="font-medium text-slate-900">{result.targetRole}</span>
                     </div>
                     </div>
                 </div>
@@ -157,23 +157,23 @@ export default function CareerPathTab({ resumeData, isAiJobRunning, setIsAiJobRu
                 </h3>
                 <div className="grid gap-4">
                 {result.learningPath.map((step, index) => (
-                    <div key={index} className="bg-neutral-900/30 border border-neutral-800 rounded-lg p-4 flex gap-4 hover:border-sky-500/50 transition-colors">
+                    <div key={index} className="flex gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-colors hover:border-sky-300/70">
                     <div className="flex-none flex flex-col items-center gap-2">
                         <div className="w-8 h-8 rounded-full bg-sky-900/50 text-sky-400 flex items-center justify-center font-bold border border-sky-800 shadow-[0_0_10px_rgba(14,165,233,0.2)]">
                         {step.step}
                         </div>
                         {index !== result.learningPath.length - 1 && (
-                        <div className="w-0.5 h-full bg-neutral-800 min-h-[20px]" />
+                        <div className="min-h-[20px] h-full w-0.5 bg-slate-200" />
                         )}
                     </div>
                     <div className="flex-1 pb-2">
                         <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-semibold text-lg text-white">{step.title}</h4>
-                        <span className="text-xs px-2 py-1 rounded bg-neutral-800 text-neutral-400 border border-neutral-700 whitespace-nowrap ml-2">
+                        <h4 className="text-lg font-semibold text-slate-900">{step.title}</h4>
+                        <span className="ml-2 whitespace-nowrap rounded border border-slate-200 bg-slate-100 px-2 py-1 text-xs text-slate-500">
                             {step.timeline}
                         </span>
                         </div>
-                        <p className="text-neutral-400 text-sm">
+                        <p className="text-sm text-slate-600">
                         {step.description}
                         </p>
                     </div>

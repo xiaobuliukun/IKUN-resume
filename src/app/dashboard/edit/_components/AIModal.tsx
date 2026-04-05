@@ -57,19 +57,19 @@ export default function AIModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl h-[84vh] bg-neutral-950 border-neutral-800 text-white flex flex-col p-0 focus:outline-none">
-        <DialogHeader className="p-4 pb-4 border-b border-neutral-800">
+      <DialogContent className="flex h-[84vh] max-w-4xl flex-col p-0 focus:outline-none">
+        <DialogHeader className="border-b border-slate-200 p-4 pb-4">
           <DialogTitle className="flex items-center text-xl">
             <Bot className="mr-3 text-sky-400" size={28}/>
             {t('modals.aiModal.title')}
           </DialogTitle>
-          <DialogDescription className="text-neutral-400">
+          <DialogDescription className="text-slate-500">
             {t('modals.aiModal.description')}
           </DialogDescription>
         </DialogHeader>
 
         <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex border-b border-neutral-800 px-6 gap-4">
+          <div className="flex gap-4 border-b border-slate-200 bg-slate-50 px-6">
             {TABS_CONFIG.map(tab => (
               <button
                 key={tab.key}
@@ -77,8 +77,8 @@ export default function AIModal({
                 disabled={isAiJobRunning}
                 className={`flex items-center gap-2 px-1 pb-3 pt-2 text-sm font-medium transition-colors relative -bottom-px ${
                   activeTabKey === tab.key
-                    ? 'border-b-2 border-sky-500 text-white'
-                    : 'text-neutral-400 hover:text-white'
+                    ? 'border-b-2 border-sky-500 text-sky-700'
+                    : 'text-slate-500 hover:text-slate-900'
                 } ${isAiJobRunning ? 'cursor-not-allowed opacity-60' : ''}`}
               >
                 {tab.icon}

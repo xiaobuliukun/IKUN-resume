@@ -56,10 +56,10 @@ export default function FontSelector({ label, value, onChange, fonts = defaultFo
 
   return (
     <div className="space-y-4">
-      <label className="text-sm font-medium text-neutral-200">{label}</label>
+      <label className="text-sm font-medium text-slate-700">{label}</label>
       
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger className="w-full bg-neutral-800 border-neutral-600 text-white hover:bg-neutral-700">
+        <SelectTrigger className="w-full border-slate-300 bg-white text-slate-900 hover:bg-slate-50">
           <SelectValue>
             <div className="flex items-center gap-3">
               <span 
@@ -72,12 +72,12 @@ export default function FontSelector({ label, value, onChange, fonts = defaultFo
             </div>
           </SelectValue>
         </SelectTrigger>
-        <SelectContent className="bg-neutral-800 border-neutral-600 text-white">
+        <SelectContent className="border-slate-200 bg-white text-slate-900">
           {fonts.map((font) => (
             <SelectItem 
               key={font.value} 
               value={font.value}
-              className="hover:bg-neutral-700 focus:bg-neutral-700 text-white"
+              className="text-slate-900 hover:bg-slate-50 focus:bg-slate-50"
             >
               <div className="flex items-center gap-3">
                 <span 

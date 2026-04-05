@@ -16,13 +16,13 @@ const defaultPresetColors = [
 export default function ColorPicker({ label, value, onChange, presetColors = defaultPresetColors }: ColorPickerProps) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-neutral-200">{label}</label>
+      <label className="text-sm font-medium text-slate-700">{label}</label>
       
       <div className="space-y-3">
         {/* 当前颜色和输入框 */}
         <div className="flex items-center gap-3">
           <div 
-            className="w-8 h-8 rounded-lg border-2 border-neutral-600 cursor-pointer"
+            className="h-8 w-8 cursor-pointer rounded-lg border-2 border-slate-300"
             style={{ backgroundColor: value }}
             onClick={() => {
               const input = document.createElement('input');
@@ -36,7 +36,7 @@ export default function ColorPicker({ label, value, onChange, presetColors = def
             type="text"
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="flex-1 px-3 py-2 bg-neutral-800 border border-neutral-600 rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="#000000"
           />
         </div>
@@ -48,8 +48,8 @@ export default function ColorPicker({ label, value, onChange, presetColors = def
               key={index}
               className={`w-8 h-8 rounded-lg border-2 transition-all duration-200 ${
                 value === color 
-                  ? 'border-white scale-110' 
-                  : 'border-neutral-600 hover:border-neutral-400 hover:scale-105'
+                  ? 'scale-110 border-slate-900' 
+                  : 'border-slate-300 hover:border-slate-400 hover:scale-105'
               }`}
               style={{ backgroundColor: color }}
               onClick={() => onChange(color)}

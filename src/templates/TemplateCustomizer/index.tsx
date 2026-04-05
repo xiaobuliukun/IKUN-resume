@@ -101,9 +101,9 @@ export default function TemplateCustomizer({
   ] as const;
 
   return (
-    <div className="h-full flex flex-col bg-neutral-900">
+    <div className="flex h-full flex-col bg-white">
       {/* 标签页导航 */}
-      <div className="border-b border-neutral-800">
+      <div className="border-b border-slate-200">
         <div className="flex">
           {tabs.map((tab) => {
             const Icon = tab.icon;
@@ -114,7 +114,7 @@ export default function TemplateCustomizer({
                 className={`flex-1 flex items-center justify-center gap-2 px-3 py-3 text-sm font-medium transition-colors duration-200 ${
                   activeTab === tab.id
                     ? 'text-blue-400 border-b-2 border-blue-400'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    : 'text-slate-500 hover:text-slate-900'
                 }`}
               >
                 <Icon size={16} />
@@ -131,13 +131,13 @@ export default function TemplateCustomizer({
           <div className="space-y-6">
             {/* 快速主题 */}
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-neutral-200">{t('templateCustomizer.colors.quickThemes')}</h3>
+              <h3 className="text-sm font-semibold text-slate-800">{t('templateCustomizer.colors.quickThemes')}</h3>
               <div className="grid grid-cols-5 gap-2">
                 {(['blue', 'green', 'purple', 'orange', 'red'] as const).map((theme) => (
                   <button
                     key={theme}
                     onClick={() => applyColorTheme(theme)}
-                    className="aspect-square rounded-lg border-2 border-neutral-600 hover:border-neutral-400 transition-colors duration-200"
+                    className="aspect-square rounded-lg border-2 border-slate-300 transition-colors duration-200 hover:border-slate-400"
                     style={{
                       background: `linear-gradient(135deg, ${
                         theme === 'blue' ? '#3B82F6' :
@@ -161,7 +161,7 @@ export default function TemplateCustomizer({
 
             {/* 自定义颜色 */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-neutral-200">{t('templateCustomizer.colors.customColors')}</h3>
+              <h3 className="text-sm font-semibold text-slate-800">{t('templateCustomizer.colors.customColors')}</h3>
               
               <ColorPicker
                 label={t('templateCustomizer.colors.primary')}
@@ -206,7 +206,7 @@ export default function TemplateCustomizer({
 
         {activeTab === 'typography' && (
           <div className="space-y-6">
-            <h3 className="text-sm font-semibold text-neutral-200">{t('templateCustomizer.typography.fontSettings')}</h3>
+            <h3 className="text-sm font-semibold text-slate-800">{t('templateCustomizer.typography.fontSettings')}</h3>
             
             <div className="space-y-4">
               <FontSelector
@@ -236,13 +236,13 @@ export default function TemplateCustomizer({
 
             {/* 字体大小调整 */}
             <div className="space-y-4">
-              <h4 className="text-sm font-medium text-neutral-300">{t('templateCustomizer.typography.fontSize')}</h4>
+              <h4 className="text-sm font-medium text-slate-700">{t('templateCustomizer.typography.fontSize')}</h4>
               <div className="space-y-4">
                 {Object.entries(template.designTokens.typography.fontSize).map(([size, value]) => (
                   <div key={size} className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <label className="text-sm text-neutral-400 capitalize font-medium">{size}</label>
-                      <span className="text-sm text-neutral-300 font-mono bg-neutral-800 px-2 py-1 rounded">{value}</span>
+                      <label className="text-sm font-medium capitalize text-slate-500">{size}</label>
+                      <span className="rounded bg-slate-100 px-2 py-1 font-mono text-sm text-slate-700">{value}</span>
                     </div>
                     <div className="relative">
                       <input
@@ -269,17 +269,17 @@ export default function TemplateCustomizer({
 
         {activeTab === 'layout' && (
           <div className="space-y-6">
-            <h3 className="text-sm font-semibold text-neutral-200">{t('templateCustomizer.layout.layoutSettings')}</h3>
+            <h3 className="text-sm font-semibold text-slate-800">{t('templateCustomizer.layout.layoutSettings')}</h3>
             
             {/* 容器设置 */}
             <div className="space-y-4">
-              <h4 className="text-sm font-medium text-neutral-300">{t('templateCustomizer.layout.containerSettings')}</h4>
+              <h4 className="text-sm font-medium text-slate-700">{t('templateCustomizer.layout.containerSettings')}</h4>
               
               {/* 容器宽度 */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm text-neutral-400 font-medium">{t('templateCustomizer.layout.containerWidth')}</label>
-                  <span className="text-sm text-neutral-300 font-mono bg-neutral-800 px-2 py-1 rounded">
+                  <label className="text-sm font-medium text-slate-500">{t('templateCustomizer.layout.containerWidth')}</label>
+                  <span className="rounded bg-slate-100 px-2 py-1 font-mono text-sm text-slate-700">
                     {template.layout.containerWidth}
                   </span>
                 </div>
@@ -297,8 +297,8 @@ export default function TemplateCustomizer({
               {/* 内边距 */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm text-neutral-400 font-medium">{t('templateCustomizer.layout.padding')}</label>
-                  <span className="text-sm text-neutral-300 font-mono bg-neutral-800 px-2 py-1 rounded">
+                  <label className="text-sm font-medium text-slate-500">{t('templateCustomizer.layout.padding')}</label>
+                  <span className="rounded bg-slate-100 px-2 py-1 font-mono text-sm text-slate-700">
                     {template.layout.padding}
                   </span>
                 </div>
@@ -316,8 +316,8 @@ export default function TemplateCustomizer({
               {/* 组件间距 */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm text-neutral-400 font-medium">{t('templateCustomizer.layout.gap')}</label>
-                  <span className="text-sm text-neutral-300 font-mono bg-neutral-800 px-2 py-1 rounded">
+                  <label className="text-sm font-medium text-slate-500">{t('templateCustomizer.layout.gap')}</label>
+                  <span className="rounded bg-slate-100 px-2 py-1 font-mono text-sm text-slate-700">
                     {template.layout.gap}
                   </span>
                 </div>
@@ -335,13 +335,13 @@ export default function TemplateCustomizer({
 
             {/* 文本设置 */}
             <div className="space-y-4">
-              <h4 className="text-sm font-medium text-neutral-300">{t('templateCustomizer.layout.textSettings')}</h4>
+              <h4 className="text-sm font-medium text-slate-700">{t('templateCustomizer.layout.textSettings')}</h4>
               
               {/* 行高 */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm text-neutral-400 font-medium">{t('templateCustomizer.layout.lineHeight')}</label>
-                  <span className="text-sm text-neutral-300 font-mono bg-neutral-800 px-2 py-1 rounded">
+                  <label className="text-sm font-medium text-slate-500">{t('templateCustomizer.layout.lineHeight')}</label>
+                  <span className="rounded bg-slate-100 px-2 py-1 font-mono text-sm text-slate-700">
                     {(template.designTokens.typography as { lineHeight?: number }).lineHeight || 1.5}
                   </span>
                 </div>
@@ -362,8 +362,8 @@ export default function TemplateCustomizer({
               {/* 字符间距 */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm text-neutral-400 font-medium">{t('templateCustomizer.layout.letterSpacing')}</label>
-                  <span className="text-sm text-neutral-300 font-mono bg-neutral-800 px-2 py-1 rounded">
+                  <label className="text-sm font-medium text-slate-500">{t('templateCustomizer.layout.letterSpacing')}</label>
+                  <span className="rounded bg-slate-100 px-2 py-1 font-mono text-sm text-slate-700">
                     {(template.designTokens.typography as { letterSpacing?: string }).letterSpacing || '0px'}
                   </span>
                 </div>
@@ -384,13 +384,13 @@ export default function TemplateCustomizer({
 
             {/* 边距设置 */}
             <div className="space-y-4">
-              <h4 className="text-sm font-medium text-neutral-300">{t('templateCustomizer.layout.spacingSettings')}</h4>
+              <h4 className="text-sm font-medium text-slate-700">{t('templateCustomizer.layout.spacingSettings')}</h4>
               
               {/* 段落间距 */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm text-neutral-400 font-medium">{t('templateCustomizer.layout.paragraphSpacing')}</label>
-                  <span className="text-sm text-neutral-300 font-mono bg-neutral-800 px-2 py-1 rounded">
+                  <label className="text-sm font-medium text-slate-500">{t('templateCustomizer.layout.paragraphSpacing')}</label>
+                  <span className="rounded bg-slate-100 px-2 py-1 font-mono text-sm text-slate-700">
                     {template.designTokens.spacing.md}
                   </span>
                 </div>
@@ -420,8 +420,8 @@ export default function TemplateCustomizer({
               {/* 大段落间距 */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm text-neutral-400 font-medium">{t('templateCustomizer.layout.sectionSpacing')}</label>
-                  <span className="text-sm text-neutral-300 font-mono bg-neutral-800 px-2 py-1 rounded">
+                  <label className="text-sm font-medium text-slate-500">{t('templateCustomizer.layout.sectionSpacing')}</label>
+                  <span className="rounded bg-slate-100 px-2 py-1 font-mono text-sm text-slate-700">
                     {template.designTokens.spacing.lg}
                   </span>
                 </div>
@@ -454,10 +454,10 @@ export default function TemplateCustomizer({
 
       {/* 返回按钮 */}
       {onBack && (
-        <div className="border-t border-neutral-800 p-4">
+        <div className="border-t border-slate-200 p-4">
           <button
             onClick={onBack}
-            className="w-full bg-neutral-700 hover:bg-neutral-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200"
+            className="w-full rounded-lg bg-slate-100 px-4 py-2 font-medium text-slate-700 transition-colors duration-200 hover:bg-slate-200"
           >
             {t('templateCustomizer.buttons.backToTemplates')}
           </button>

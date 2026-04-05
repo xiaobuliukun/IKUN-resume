@@ -57,7 +57,7 @@ export const MessageItem: React.FC<MessageItemProps> = ({
             p-3 rounded-2xl shadow-sm border-0
             ${isUser 
               ? 'bg-gradient-to-r text-white ml-auto' 
-              : 'bg-neutral-800 text-neutral-200'
+              : 'bg-white text-slate-700 border border-slate-200'
             }
           `}
           style={isUser ? { 
@@ -76,7 +76,7 @@ export const MessageItem: React.FC<MessageItemProps> = ({
               variant="ghost"
               size="sm"
               onClick={() => setShowJson(!showJson)}
-              className="flex items-center gap-2 text-xs text-neutral-400 hover:text-neutral-200 hover:bg-neutral-700/50 p-2 rounded-md transition-colors"
+              className="flex items-center gap-2 rounded-md p-2 text-xs text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800"
             >
               <FileText className="w-3 h-3" />
               <span>{showJson ? t('common.ui.hide') : t('common.ui.view')}{t('common.ui.parseResumeData')}</span>
@@ -88,16 +88,16 @@ export const MessageItem: React.FC<MessageItemProps> = ({
             </Button>
 
             {showJson && (
-              <Card className="mt-2 p-3 bg-neutral-800 border border-neutral-700 rounded-xl">
+              <Card className="mt-2 rounded-xl border border-slate-200 bg-white p-3">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-xs text-neutral-400 font-medium">
+                  <div className="text-xs font-medium text-slate-500">
                     {t('common.ui.parseResumeData')} (JSON)
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={copyJsonToClipboard}
-                    className="h-6 px-2 text-xs text-neutral-400 hover:text-neutral-200"
+                    className="h-6 px-2 text-xs text-slate-500 hover:text-slate-800"
                   >
                     <Copy className="w-3 h-3 mr-1" />
                     {t('sections.shared.copy')}
