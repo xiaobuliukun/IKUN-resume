@@ -38,7 +38,7 @@ import JsonModal from './_components/JsonModal';
 const ResumePreviewPanel = dynamic(() => import('./_components/ResumePreviewPanel'), { 
   ssr: false,
   loading: () => (
-    <div className="w-full h-full bg-black flex items-center justify-center text-white">
+    <div className="flex h-full w-full items-center justify-center bg-slate-100 text-slate-700">
       <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
     </div>
   )
@@ -211,15 +211,15 @@ export default function ResumeEdit({ id: propId }: { id?: string }) {
   // 如果简历未找到，显示错误信息
   if (resumeNotFound) {
     return (
-      <div className="flex h-screen bg-black text-white items-center justify-center">
+      <div className="flex h-screen items-center justify-center bg-slate-50 text-slate-900">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">{t('editPage.errors.resumeNotFound')}</h1>
-          <p className="text-neutral-400 mb-8">
+          <p className="mb-8 text-slate-500">
             {t('editPage.errors.resumeNotFoundDescription', { id })}
           </p>
           <button
             onClick={() => window.history.back()}
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg transition-colors"
+            className="rounded-lg bg-sky-600 px-6 py-2 text-white transition-colors hover:bg-sky-700"
           >
             {t('editPage.errors.goBack')}
           </button>
@@ -309,7 +309,7 @@ export default function ResumeEdit({ id: propId }: { id?: string }) {
 
   return (
     <>
-      <main className="flex h-screen bg-black text-white flex-1">
+      <main className="flex h-screen flex-1 bg-slate-50 text-slate-900">
         {/* 左侧简历内容 */}
         <div className="w-[300px] transition-all duration-300 bg-transparent h-full">
           <ResumeContent
@@ -319,7 +319,7 @@ export default function ResumeEdit({ id: propId }: { id?: string }) {
           />
         </div>
         <div 
-          className='flex-1 flex items-center justify-center bg-black relative transition-all duration-300' 
+          className='relative flex flex-1 items-center justify-center bg-slate-100 transition-all duration-300' 
           style={{ 
             marginRight: rightCollapsed ? '56px' : '280px' 
           }}

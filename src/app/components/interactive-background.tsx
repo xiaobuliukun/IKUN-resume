@@ -55,7 +55,7 @@ function OptimizedStars(props: { count?: number }) {
       <Points ref={ref} positions={positions} stride={3} frustumCulled={false} {...props}>
         <pointsMaterial
           transparent
-          color="#a855f7"
+          color="#38bdf8"
           size={0.015}
           sizeAttenuation={true}
           depthWrite={false}
@@ -100,7 +100,7 @@ function SimpleFloatingGeometry() {
       <meshBasicMaterial 
         color="#67e8f9" 
         transparent 
-        opacity={0.08}
+        opacity={0.06}
         wireframe
       />
     </mesh>
@@ -155,7 +155,7 @@ function SimplifiedGlow() {
       <meshBasicMaterial
         color="#a855f7"
         transparent
-        opacity={0.05}
+        opacity={0.04}
       />
     </Sphere>
   );
@@ -165,7 +165,7 @@ export function InteractiveBackground() {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden">
       {/* 简化CSS渐变 */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-cyan-900/5" />
+      <div className="absolute inset-0 bg-gradient-to-br from-sky-100/60 via-white to-indigo-100/40" />
       
       <Canvas 
         camera={{ position: [0, 0, 1], fov: 60 }}
@@ -180,11 +180,11 @@ export function InteractiveBackground() {
         <LightCameraRig />
         
         {/* 减少雾效果 */}
-        <fog attach="fog" args={['#000000', 8, 12]} />
+        <fog attach="fog" args={['#f8fafc', 8, 12]} />
       </Canvas>
       
       {/* 简化CSS光晕 */}
-      <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-purple-500/3 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 left-1/3 h-64 w-64 rounded-full bg-sky-400/10 blur-3xl" />
     </div>
   );
-} 
+}

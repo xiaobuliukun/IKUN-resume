@@ -85,10 +85,10 @@ export default function TemplatePreviewCard({ template, isSelected, onSelect, on
     >
       {/* 主卡片 */}
       <div
-        className={`relative bg-neutral-800/80 backdrop-blur-sm border-2 aspect-[3/4] rounded-xl overflow-hidden transition-all duration-200 ${
+        className={`relative aspect-[3/4] overflow-hidden rounded-xl border-2 bg-white/95 backdrop-blur-sm transition-all duration-200 ${
           isSelected 
             ? 'border-blue-500 shadow-lg shadow-blue-500/20' 
-            : 'border-neutral-600 hover:border-neutral-500'
+            : 'border-slate-200 hover:border-slate-300'
         }`}
       >
         {/* 背景渐变 */}
@@ -109,13 +109,13 @@ export default function TemplatePreviewCard({ template, isSelected, onSelect, on
           {/* 底部信息 */}
           <div className="space-y-2">
             {/* 模板名称 */}
-            <h3 className="text-white text-sm font-semibold text-center">
+            <h3 className="text-center text-sm font-semibold text-slate-900">
               {template.name}
             </h3>
             
             {/* 布局标识和颜色指示 */}
             <div className="flex items-center justify-between">
-              <span className="text-xs text-neutral-400">
+              <span className="text-xs text-slate-500">
                 {template.layout.type === 'two-column' ? '双栏' : '单栏'}
               </span>
               
@@ -143,7 +143,7 @@ export default function TemplatePreviewCard({ template, isSelected, onSelect, on
               {template.tags.slice(0, 2).map((tag, index) => (
                 <span 
                   key={index}
-                  className="text-xs px-2 py-0.5 rounded-full bg-neutral-700/60 text-neutral-300 border border-neutral-600/50"
+                  className="rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs text-slate-600"
                 >
                   {tag}
                 </span>
@@ -167,10 +167,10 @@ export default function TemplatePreviewCard({ template, isSelected, onSelect, on
               e.stopPropagation();
               onCustomize();
             }}
-            className="absolute top-2 left-2 w-6 h-6 bg-neutral-700/80 hover:bg-neutral-600 border border-neutral-600 rounded-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            className="absolute top-2 left-2 flex h-6 w-6 items-center justify-center rounded-md border border-slate-200 bg-white/90 opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:bg-slate-50"
             title="自定义模板"
           >
-            <Settings size={12} className="text-neutral-300" />
+            <Settings size={12} className="text-slate-600" />
           </button>
         )}
       </div>

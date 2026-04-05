@@ -35,15 +35,15 @@ const ResumePreviewPanel: React.FC<ResumePreviewPanelProps> = ({
 
   if (!activeResume) {
     return (
-      <section className="flex-1 flex items-center justify-center bg-black relative overflow-hidden max-h-screen">
-        <div className="text-white">Loading...</div>
+      <section className="relative flex max-h-screen flex-1 items-center justify-center overflow-hidden bg-slate-100">
+        <div className="text-slate-600">Loading...</div>
       </section>
     );
   }
 
   return (
     <section
-      className="flex-1 flex items-center justify-center bg-black relative overflow-hidden max-h-screen"
+      className="relative flex max-h-screen flex-1 items-center justify-center overflow-hidden bg-slate-100"
     >
       <TransformWrapper
         initialScale={0.6}

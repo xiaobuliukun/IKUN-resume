@@ -47,30 +47,30 @@ const TiptapToolbar = ({ editor }: { editor: Editor | null }) => {
     return null
   }
 
-  const buttonClass = (active: boolean) => `p-2 rounded text-sm flex items-center justify-center ${active ? 'bg-neutral-600' : 'hover:bg-neutral-700'}`;
-  const disabledButtonClass = 'p-2 rounded text-sm flex items-center justify-center text-neutral-600 cursor-not-allowed';
+  const buttonClass = (active: boolean) => `flex items-center justify-center rounded p-2 text-sm ${active ? 'bg-sky-100 text-sky-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`;
+  const disabledButtonClass = 'flex cursor-not-allowed items-center justify-center rounded p-2 text-sm text-slate-300';
 
   return (
-    <div className="flex flex-wrap items-center gap-1 p-2 bg-neutral-800 border border-neutral-700 rounded-t-md text-white">
+    <div className="flex flex-wrap items-center gap-1 rounded-t-md border border-slate-200 bg-slate-50 p-2 text-slate-700">
       <button onClick={() => editor.chain().focus().toggleBold().run()} disabled={!editor.can().chain().focus().toggleBold().run()} className={editor.isActive('bold') ? buttonClass(true) : buttonClass(false)} aria-label="Bold"><FaBold /></button>
       <button onClick={() => editor.chain().focus().toggleItalic().run()} disabled={!editor.can().chain().focus().toggleItalic().run()} className={editor.isActive('italic') ? buttonClass(true) : buttonClass(false)} aria-label="Italic"><FaItalic /></button>
       <button onClick={() => editor.chain().focus().toggleUnderline().run()} disabled={!editor.can().chain().focus().toggleUnderline().run()} className={editor.isActive('underline') ? buttonClass(true) : buttonClass(false)} aria-label="Underline"><FaUnderline /></button>
       <button onClick={() => editor.chain().focus().toggleStrike().run()} disabled={!editor.can().chain().focus().toggleStrike().run()} className={editor.isActive('strike') ? buttonClass(true) : buttonClass(false)} aria-label="Strike"><FaStrikethrough /></button>
       <button onClick={setLink} className={editor.isActive('link') ? buttonClass(true) : buttonClass(false)} aria-label="Link"><FaLink /></button>
       <button onClick={() => editor.chain().focus().toggleCode().run()} disabled={!editor.can().chain().focus().toggleCode().run()} className={editor.isActive('code') ? buttonClass(true) : buttonClass(false)} aria-label="Inline Code"><FaCode /></button>
-      <div className="h-4 w-px bg-neutral-600 mx-1"></div>
+      <div className="mx-1 h-4 w-px bg-slate-300"></div>
       <button onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} className={editor.isActive('heading', { level: 1 }) ? buttonClass(true) : buttonClass(false)} aria-label="Heading 1">H1</button>
       <button onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={editor.isActive('heading', { level: 2 }) ? buttonClass(true) : buttonClass(false)} aria-label="Heading 2">H2</button>
       <button onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} className={editor.isActive('heading', { level: 3 }) ? buttonClass(true) : buttonClass(false)} aria-label="Heading 3">H3</button>
-      <div className="h-4 w-px bg-neutral-600 mx-1"></div>
+      <div className="mx-1 h-4 w-px bg-slate-300"></div>
       <button onClick={() => editor.chain().focus().setTextAlign('left').run()} className={editor.isActive({ textAlign: 'left' }) ? buttonClass(true) : buttonClass(false)} aria-label="Align Left"><FaAlignLeft /></button>
       <button onClick={() => editor.chain().focus().setTextAlign('center').run()} className={editor.isActive({ textAlign: 'center' }) ? buttonClass(true) : buttonClass(false)} aria-label="Align Center"><FaAlignCenter /></button>
       <button onClick={() => editor.chain().focus().setTextAlign('right').run()} className={editor.isActive({ textAlign: 'right' }) ? buttonClass(true) : buttonClass(false)} aria-label="Align Right"><FaAlignRight /></button>
       <button onClick={() => editor.chain().focus().setTextAlign('justify').run()} className={editor.isActive({ textAlign: 'justify' }) ? buttonClass(true) : buttonClass(false)} aria-label="Align Justify"><FaAlignJustify /></button>
-      <div className="h-4 w-px bg-neutral-600 mx-1"></div>
+      <div className="mx-1 h-4 w-px bg-slate-300"></div>
       <button onClick={() => editor.chain().focus().toggleBulletList().run()} className={editor.isActive('bulletList') ? buttonClass(true) : buttonClass(false)} aria-label="Bullet List"><FaListUl /></button>
       <button onClick={() => editor.chain().focus().toggleOrderedList().run()} className={editor.isActive('orderedList') ? buttonClass(true) : buttonClass(false)} aria-label="Ordered List"><FaListOl /></button>
-      <div className="h-4 w-px bg-neutral-600 mx-1"></div>
+      <div className="mx-1 h-4 w-px bg-slate-300"></div>
       <button onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().chain().focus().undo().run()} className={!editor.can().chain().focus().undo().run() ? disabledButtonClass : buttonClass(false)} aria-label="Undo"><FaUndo /></button>
       <button onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().chain().focus().redo().run()} className={!editor.can().chain().focus().redo().run() ? disabledButtonClass : buttonClass(false)} aria-label="Redo"><FaRedo /></button>
     </div>
@@ -193,7 +193,7 @@ const TiptapEditor = ({ content, onChange, placeholder, isPolishing, setIsPolish
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-invert dark:prose-invert min-h-[150px] max-h-[250px] overflow-y-auto w-full max-w-none rounded-b-md border border-b-neutral-700 border-x-neutral-700 bg-black px-3 py-2 text-sm text-gray-200 focus:outline-none border-none bg-neutral-800 hide-scrollbar',
+        class: 'prose min-h-[150px] max-h-[250px] hide-scrollbar w-full max-w-none overflow-y-auto rounded-b-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 focus:outline-none',
       },
     },
   });
@@ -266,8 +266,8 @@ const TiptapEditor = ({ content, onChange, placeholder, isPolishing, setIsPolish
 
 
 
-  const buttonClass = (active: boolean) => `p-2 rounded text-sm flex items-center justify-center ${active ? 'bg-neutral-600' : 'hover:bg-neutral-700'}`;
-  const disabledButtonClass = 'p-2 rounded text-sm flex items-center justify-center text-neutral-500 cursor-not-allowed';
+  const buttonClass = (active: boolean) => `flex items-center justify-center rounded p-2 text-sm ${active ? 'bg-sky-100 text-sky-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`;
+  const disabledButtonClass = 'flex cursor-not-allowed items-center justify-center rounded p-2 text-sm text-slate-300';
 
   return (
     <div 
@@ -278,7 +278,7 @@ const TiptapEditor = ({ content, onChange, placeholder, isPolishing, setIsPolish
       <TiptapToolbar editor={editor} />
       
       {editor && <BubbleMenu
-        className="flex items-center gap-1 p-1 bg-neutral-800 border border-neutral-700 rounded-md text-white"
+        className="flex items-center gap-1 rounded-md border border-slate-200 bg-white p-1 text-slate-700 shadow-lg"
         tippyOptions={{
           appendTo: () => document.body,
           popperOptions: {
@@ -300,7 +300,7 @@ const TiptapEditor = ({ content, onChange, placeholder, isPolishing, setIsPolish
       </BubbleMenu>}
 
       {editor && <FloatingMenu
-        className="flex items-center gap-1 p-1 bg-neutral-800 border border-neutral-700 rounded-md text-white"
+        className="flex items-center gap-1 rounded-md border border-slate-200 bg-white p-1 text-slate-700 shadow-lg"
         tippyOptions={{
           placement: 'left',
           appendTo: () => document.body,
@@ -320,8 +320,8 @@ const TiptapEditor = ({ content, onChange, placeholder, isPolishing, setIsPolish
         <EditorContent editor={editor} placeholder={placeholder} />
         
         {lastPolished && !isPolishing && (
-          <div className="ai-polish-panel absolute top-2 right-2 flex items-center gap-1 p-1.5 bg-neutral-900/95 backdrop-blur-sm rounded border border-neutral-600 shadow-lg z-50 ">
-            <span className="text-xs text-neutral-400 px-1">{countdown}s</span>
+          <div className="ai-polish-panel absolute top-2 right-2 z-50 flex items-center gap-1 rounded border border-slate-200 bg-white/95 p-1.5 shadow-lg backdrop-blur-sm">
+            <span className="px-1 text-xs text-slate-500">{countdown}s</span>
             <button
               onClick={handleAcceptPolish}
               className="ai-polish-button w-6 h-6 text-white text-xs rounded transition-all duration-200 flex items-center justify-center"
@@ -336,7 +336,7 @@ const TiptapEditor = ({ content, onChange, placeholder, isPolishing, setIsPolish
             </button>
             <button
               onClick={createRejectPolishHandler(editor)}
-              className="ai-polish-button w-6 h-6 bg-neutral-600 hover:bg-neutral-500 text-white text-xs rounded transition-all duration-200 flex items-center justify-center border border-neutral-500"
+              className="ai-polish-button flex h-6 w-6 items-center justify-center rounded border border-slate-300 bg-slate-100 text-xs text-slate-700 transition-all duration-200 hover:bg-slate-200"
               aria-label={t('tiptap.rejectChanges', '回退更改')}
               title={t('tiptap.reject', '回退')}
             >

@@ -40,7 +40,7 @@ export default function DashboardSidebar() {
   const sidebarContent = (
     <>
       <div className="px-4 mb-8 flex justify-center">
-        <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+        <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
           Smart Resume
         </Link>
       </div>
@@ -49,7 +49,11 @@ export default function DashboardSidebar() {
           <Link
             key={href}
             href={href}
-            className={`flex items-center px-4 mt-2 py-3 text-lg rounded-lg transition-colors ${pathname === href ? 'bg-neutral-700 text-white' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}
+            className={`flex items-center px-4 mt-2 py-3 text-lg rounded-lg transition-colors ${
+              pathname === href
+                ? 'bg-sky-100 text-sky-700'
+                : 'text-slate-600 hover:bg-white hover:text-slate-900'
+            }`}
           >
             <Icon className="w-5 h-5 mr-4 z-1" />
             {label}
@@ -70,7 +74,7 @@ export default function DashboardSidebar() {
   if (pathname.includes('/edit')) {
     if (!hasMounted) {
       return (
-        <aside className="w-20 bg-black border-r border-neutral-800 flex-col py-8 hidden md:flex items-center">
+        <aside className="hidden w-20 flex-col items-center border-r border-slate-200 bg-white py-8 md:flex">
           <Skeleton className="h-10 w-10 mb-8 rounded-md" />
           <div className="flex-1 flex flex-col justify-center gap-4">
             <Skeleton className="h-10 w-10 rounded-md" />
@@ -85,8 +89,8 @@ export default function DashboardSidebar() {
       );
     }
     return (
-      <aside className="border-r border-neutral-800 bg-neutral-900 flex-col p-4 w-20 items-center hidden md:flex">
-        <Link href="/" className="mb-8 text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+      <aside className="hidden w-20 flex-col items-center border-r border-slate-200 bg-white p-4 md:flex">
+        <Link href="/" className="mb-8 text-xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
           SR
         </Link>
         <nav className="flex flex-col gap-2 flex-grow justify-center">
@@ -99,7 +103,7 @@ export default function DashboardSidebar() {
               <Button
                 key={section.key}
                 variant="ghost"
-                className='h-12 w-12 hover:bg-neutral-800 bg-transparent z-[1]'
+                className='z-[1] h-12 w-12 bg-transparent text-slate-600 hover:bg-sky-50 hover:text-sky-700'
                 onClick={() => setActiveSection(section.key)}
                 title={t(section.label)}
               >
@@ -119,7 +123,7 @@ export default function DashboardSidebar() {
 
   if (!hasMounted) {
     return (
-      <aside className="w-64 bg-black border-r border-neutral-800 flex-col py-8 hidden md:flex">
+      <aside className="hidden w-64 flex-col border-r border-slate-200 bg-white py-8 md:flex">
         <div className="px-4 mb-8">
           <Skeleton className="h-10 w-36" />
         </div>
@@ -143,10 +147,10 @@ export default function DashboardSidebar() {
       <>
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed top-4 right-4 z-5 p-2 bg-neutral-800 rounded-md"
+          className="fixed top-4 right-4 z-5 rounded-md border border-slate-200 bg-white p-2 shadow-sm"
           aria-label={t('sidebar.open')}
         >
-          <FiMenu className="h-6 w-6 text-white" />
+          <FiMenu className="h-6 w-6 text-slate-700" />
         </button>
         <AnimatePresence>
           {isOpen && (
@@ -156,7 +160,7 @@ export default function DashboardSidebar() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="fixed inset-0 bg-black/50 z-40"
+                className="fixed inset-0 z-40 bg-slate-900/20"
                 onClick={() => setIsOpen(false)}
               />
               <motion.aside
@@ -164,14 +168,14 @@ export default function DashboardSidebar() {
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                className="fixed top-0 left-0 h-full w-64 bg-black border-r border-neutral-800 flex flex-col py-8 z-50"
+                className="fixed top-0 left-0 z-50 flex h-full w-64 flex-col border-r border-slate-200 bg-white py-8 shadow-xl"
               >
                 <button
                   onClick={() => setIsOpen(false)}
                   className="absolute top-4 right-4 p-2"
                   aria-label={t('sidebar.close')}
                 >
-                  <FiX className="h-6 w-6 text-neutral-400 z-5" />
+                  <FiX className="z-5 h-6 w-6 text-slate-500" />
                 </button>
                 <div className="flex flex-col flex-1">
                   {sidebarContent}
@@ -185,7 +189,7 @@ export default function DashboardSidebar() {
   }
 
   return (
-    <aside className="w-64 bg-black border-r border-neutral-800 flex flex-col py-8">
+    <aside className="flex w-64 flex-col border-r border-slate-200 bg-white py-8 shadow-sm">
       {sidebarContent}
     </aside>
   );

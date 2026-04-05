@@ -11,7 +11,7 @@ type ResumeContentProps = {
 export default function ResumeContent({ renderSections, handleSave, onShowJson }: ResumeContentProps) {
   const { t } = useTranslation();
   return (
-    <div className="p-6 px-0 h-full flex flex-col bg-neutral-900 border-r border-neutral-800">
+    <div className="flex h-full flex-col border-r border-slate-200 bg-white p-6 px-0">
       <div className="flex-1 overflow-y-auto px-4">
         {renderSections()}
       </div>

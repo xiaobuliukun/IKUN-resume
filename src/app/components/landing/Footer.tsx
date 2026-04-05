@@ -37,7 +37,7 @@ export function Footer() {
 
   return (
     <motion.footer 
-      className="relative border-t border-neutral-800/50 bg-gradient-to-b from-neutral-900/50 to-black/80 backdrop-blur-sm overflow-hidden"
+      className="relative overflow-hidden border-t border-slate-200 bg-gradient-to-b from-white to-slate-50 backdrop-blur-sm"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
@@ -45,9 +45,9 @@ export function Footer() {
     >
       {/* 背景装饰 */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/3 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-indigo-500/3 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sky-300/50 to-transparent" />
+        <div className="absolute top-1/2 left-1/4 h-96 w-96 rounded-full bg-sky-500/5 blur-3xl" />
+        <div className="absolute top-1/2 right-1/4 h-96 w-96 rounded-full bg-indigo-500/5 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 py-12 relative z-10">
@@ -75,11 +75,11 @@ export function Footer() {
                     className="transition-all duration-300 group-hover:brightness-110" 
                   />
                   */}
-                  <div className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                  <div className="text-xl font-bold text-slate-900 transition-colors group-hover:text-sky-600">
                     Smart Resume
                   </div>
                   {/* Logo 光晕 */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-indigo-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg" />
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-sky-300/30 to-indigo-300/30 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
               </Link>
             </motion.div>
@@ -89,11 +89,11 @@ export function Footer() {
               variants={fadeInUp}
             >
               {/* 分隔线 - 仅在 MD 及以上显示 */}
-              <div className="hidden md:block w-px h-8 bg-gradient-to-b from-transparent via-neutral-600 to-transparent" />
+              <div className="hidden h-8 w-px bg-gradient-to-b from-transparent via-slate-300 to-transparent md:block" />
               
               <motion.p 
-                className="text-sm text-neutral-500 flex items-center gap-2"
-                whileHover={{ color: "#a855f7" }}
+                className="flex items-center gap-2 text-sm text-slate-500"
+                whileHover={{ color: "#0284c7" }}
                 transition={{ duration: 0.3 }}
               >
                 <span className="flex items-center gap-1">
@@ -117,33 +117,33 @@ export function Footer() {
           >
             {/* 额外的装饰元素 */}
             <motion.div
-              className="hidden lg:flex items-center gap-2 px-3 py-1 bg-neutral-800/20 border border-neutral-700/30 rounded-full"
+              className="hidden items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 lg:flex"
               variants={fadeInUp}
             >
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-xs text-neutral-500">系统运行中</span>
+              <span className="text-xs text-slate-500">系统运行中</span>
             </motion.div>
           </motion.div>
         </motion.div>
 
         {/* 底部额外信息 */}
         <motion.div 
-          className="mt-8 pt-8 border-t border-neutral-800/30 text-center"
+          className="mt-8 border-t border-slate-200 pt-8 text-center"
           variants={fadeInUp}
         >
           <motion.div 
-            className="flex flex-col sm:flex-row justify-center items-center gap-4 text-xs text-neutral-600"
+            className="flex flex-col items-center justify-center gap-4 text-xs text-slate-500 sm:flex-row"
             variants={fadeInUp}
           >
-            <motion.span whileHover={{ color: "#a855f7" }} transition={{ duration: 0.3 }}>
+            <motion.span whileHover={{ color: "#0284c7" }} transition={{ duration: 0.3 }}>
               基于 Next.js 与 AI 技术构建
             </motion.span>
-            <div className="hidden sm:block w-1 h-1 bg-neutral-600 rounded-full" />
-            <motion.span whileHover={{ color: "#06b6d4" }} transition={{ duration: 0.3 }}>
+            <div className="hidden h-1 w-1 rounded-full bg-slate-300 sm:block" />
+            <motion.span whileHover={{ color: "#0284c7" }} transition={{ duration: 0.3 }}>
               学术研究用途
             </motion.span>
-            <div className="hidden sm:block w-1 h-1 bg-neutral-600 rounded-full" />
-            <motion.span whileHover={{ color: "#10b981" }} transition={{ duration: 0.3 }}>
+            <div className="hidden h-1 w-1 rounded-full bg-slate-300 sm:block" />
+            <motion.span whileHover={{ color: "#0284c7" }} transition={{ duration: 0.3 }}>
               仅供学习交流
             </motion.span>
           </motion.div>
@@ -151,7 +151,7 @@ export function Footer() {
       </div>
 
       {/* 底部渐变 */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-700/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300/70 to-transparent" />
     </motion.footer>
   );
 }

@@ -23,7 +23,7 @@ export default function JsonModal({ isJsonModalOpen, closeJsonModal, handleDownl
             <div className="relative">
                 <button
                     onClick={handleDownloadJson}
-                    className="absolute top-3 right-3 p-2 text-gray-400 rounded-md hover:bg-neutral-700 hover:text-white transition-colors"
+                    className="absolute top-3 right-3 rounded-md p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
                     aria-label="Download JSON file"
                 >
                     <FaDownload />

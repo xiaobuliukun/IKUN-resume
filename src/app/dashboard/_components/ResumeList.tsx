@@ -62,7 +62,7 @@ function ResumeCard({
       whileTap={{ scale: 0.98 }}
       layout
     >
-      <Card className="group h-64 flex flex-col justify-between cursor-pointer relative overflow-hidden bg-neutral-900 border border-neutral-800 hover:border-neutral-700">
+      <Card className="group relative flex h-64 cursor-pointer flex-col justify-between overflow-hidden border-slate-200 bg-white hover:border-sky-200 hover:shadow-md">
         <Link href={`/dashboard/edit?id=${resume.id}`} className="block w-full h-full">
           <div className="relative w-full h-full">
             {imageUrl ? (
@@ -74,16 +74,16 @@ function ResumeCard({
                 className="opacity-50 group-hover:opacity-75 transition-opacity duration-300"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-neutral-800">
-                <FaRegClone className="text-4xl text-neutral-600" />
+              <div className="flex h-full w-full items-center justify-center bg-slate-100">
+                <FaRegClone className="text-4xl text-slate-400" />
               </div>
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/75 to-transparent" />
             
             <CardFooter className="absolute bottom-0 left-0 w-full p-4 z-10">
               <div>
-                <div className="font-semibold text-white text-base truncate group-hover:text-sky-400 transition-colors">{resume.name}</div>
-                <div className="text-xs text-neutral-400 mt-1">{t('dashboard.resumeCard.lastUpdated', { time: formatTime(resume.updatedAt) })}</div>
+                <div className="truncate text-base font-semibold text-slate-900 transition-colors group-hover:text-sky-700">{resume.name}</div>
+                <div className="mt-1 text-xs text-slate-500">{t('dashboard.resumeCard.lastUpdated', { time: formatTime(resume.updatedAt) })}</div>
               </div>
             </CardFooter>
           </div>
@@ -94,13 +94,13 @@ function ResumeCard({
             <DropdownMenuTrigger asChild>
               <motion.button 
                 whileHover={{ scale: 1.2 }}
-                className="p-2 rounded-full bg-black hover:bg-neutral-700 text-white transition-colors focus:outline-none"
+                className="rounded-full border border-slate-200 bg-white p-2 text-slate-600 shadow-sm transition-colors hover:bg-slate-50 focus:outline-none"
                 onClick={e => e.stopPropagation()}
               >
                 <FiMoreVertical />
               </motion.button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent onClick={e => e.stopPropagation()} side="bottom" align="end" className='bg-neutral-900 border-neutral-700 text-white'>
+            <DropdownMenuContent onClick={e => e.stopPropagation()} side="bottom" align="end" className='border-slate-200 bg-white text-slate-700'>
               <DropdownMenuItem onClick={() => onRename(resume)} className='cursor-pointer'>
                 <FaEdit className="mr-2" />
                 {t('dashboard.resumeCard.rename')}
@@ -161,9 +161,9 @@ export default function ResumeList({ resumes, onAdd, onImport, onDelete, onDupli
         <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
           <Card className="group cursor-pointer h-64 flex flex-col items-center justify-center relative overflow-hidden" onClick={onAdd}>
             <CardContent className="flex-1 flex flex-col items-center justify-center">
-              <FaPlus className="text-4xl text-neutral-600 group-hover:text-blue-500 mb-2 transition" />
-              <div className="text-lg font-semibold text-neutral-300">{t('dashboard.newResumeCard.title')}</div>
-              <div className="text-xs text-neutral-500 mt-1">{t('dashboard.newResumeCard.description')}</div>
+              <FaPlus className="mb-2 text-4xl text-slate-400 transition group-hover:text-sky-600" />
+              <div className="text-lg font-semibold text-slate-800">{t('dashboard.newResumeCard.title')}</div>
+              <div className="mt-1 text-xs text-slate-500">{t('dashboard.newResumeCard.description')}</div>
             </CardContent>
           </Card>
         </motion.div>
@@ -171,11 +171,11 @@ export default function ResumeList({ resumes, onAdd, onImport, onDelete, onDupli
         <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
           <Card className="group cursor-pointer h-64 flex flex-col items-center justify-center relative overflow-hidden" onClick={onImport}>
             <CardContent className="flex-1 flex flex-col items-center justify-center text-center p-6">
-              <div className="w-16 h-16 rounded-full bg-neutral-800 flex items-center justify-center mb-4 transition-colors group-hover:bg-blue-500/20">
-                <FaDownload className="text-3xl text-neutral-500 transition-colors group-hover:text-blue-400" />
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 transition-colors group-hover:bg-sky-50">
+                <FaDownload className="text-3xl text-slate-500 transition-colors group-hover:text-sky-600" />
               </div>
-              <div className="text-lg font-semibold text-neutral-200">{t('dashboard.importResumeCard.title')}</div>
-              <div className="text-sm text-neutral-500 mt-1">{t('dashboard.importResumeCard.description')}</div>
+              <div className="text-lg font-semibold text-slate-800">{t('dashboard.importResumeCard.title')}</div>
+              <div className="mt-1 text-sm text-slate-500">{t('dashboard.importResumeCard.description')}</div>
             </CardContent>
           </Card>
         </motion.div>

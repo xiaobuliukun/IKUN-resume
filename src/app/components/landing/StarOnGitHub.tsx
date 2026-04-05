@@ -19,11 +19,11 @@ export default function StarOnGitHub() {
             });
     }, []);
     return (
-        <a href="https://github.com/LinMoQC/Magic-Resume" target="_blank" rel="noopener noreferrer" className="bg-[#211E2D] border hidden md:flex border-neutral-700 rounded-lg px-4 py-2 items-center gap-3 text-sm font-medium text-neutral-300 hover:bg-neutral-800 transition-colors">
+        <a href="https://github.com/LinMoQC/Magic-Resume" target="_blank" rel="noopener noreferrer" className="hidden items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm transition-colors hover:bg-slate-50 md:flex">
             <FaStar className="text-yellow-400" />
             <span>Star on GitHub</span>
-            <span className="text-neutral-600">|</span>
-            <span className="font-semibold text-white">
+            <span className="text-slate-300">|</span>
+            <span className="font-semibold text-slate-900">
                 {stars !== null ? new Intl.NumberFormat().format(stars) : '...'}
             </span>
         </a>

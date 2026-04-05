@@ -85,7 +85,7 @@ export default function ImportResumeDialog({ open, onOpenChange }: ImportResumeD
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className='text-white'>{t('importDialog.title')}</DialogTitle>
+          <DialogTitle>{t('importDialog.title')}</DialogTitle>
           <DialogDescription>
             {t('importDialog.description')}
           </DialogDescription>
@@ -93,12 +93,12 @@ export default function ImportResumeDialog({ open, onOpenChange }: ImportResumeD
 
         <div
           {...getRootProps()}
-          className={`mt-4 border-2 border-dashed rounded-lg p-10 text-center cursor-pointer transition-colors
-            ${isDragActive ? 'border-sky-500 bg-sky-500/10' : 'border-neutral-700 hover:border-sky-600'}
+          className={`mt-4 cursor-pointer rounded-lg border-2 border-dashed p-10 text-center transition-colors
+            ${isDragActive ? 'border-sky-500 bg-sky-50' : 'border-slate-300 hover:border-sky-400 hover:bg-slate-50'}
           `}
         >
           <input {...getInputProps()} />
-          <div className="flex flex-col items-center justify-center text-neutral-400">
+          <div className="flex flex-col items-center justify-center text-slate-500">
             <FaFileUpload className="w-12 h-12 mb-4" />
             {isDragActive ? (
               <p>{t('importDialog.dropzone.active')}</p>
@@ -113,7 +113,7 @@ export default function ImportResumeDialog({ open, onOpenChange }: ImportResumeD
           <Button 
             variant="ghost" 
             size="sm" 
-            className="bg-transparent hover:bg-neutral-800 text-xs text-neutral-400 hover:text-white"
+            className="bg-transparent text-xs text-slate-500 hover:bg-slate-100 hover:text-slate-800"
             onClick={() => setShowExample(!showExample)}
           >
             {showExample ? t('importDialog.hideExample') : t('importDialog.showExample')}
@@ -121,8 +121,8 @@ export default function ImportResumeDialog({ open, onOpenChange }: ImportResumeD
         </div>
         
         {showExample && (
-          <div className="mt-2 p-3 bg-neutral-950 rounded-md border border-neutral-800 overflow-auto max-h-60 text-left">
-            <pre className="text-xs text-neutral-300 font-mono">
+          <div className="mt-2 max-h-60 overflow-auto rounded-md border border-slate-200 bg-slate-50 p-3 text-left">
+            <pre className="font-mono text-xs text-slate-700">
               {JSON.stringify(exampleJson, null, 2)}
             </pre>
           </div>
@@ -133,7 +133,7 @@ export default function ImportResumeDialog({ open, onOpenChange }: ImportResumeD
         <DialogFooter className="mt-4">
           <Button 
             variant="outline" 
-            className="bg-transparent border-neutral-700 hover:bg-neutral-800 text-neutral-300 hover:text-white"
+            className="border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900"
             onClick={() => onOpenChange(false)}
           >
             {t('importDialog.cancel')}

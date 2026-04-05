@@ -76,15 +76,15 @@ function SortableItem<T extends BaseItem>({ id, item, index, handleEdit, handleD
   };
 
   return (
-    <div ref={setNodeRef} style={style} className={cn("relative flex items-center gap-2 mb-2 p-3 bg-neutral-900 rounded-md")}>
-      <div {...attributes} {...listeners} className={cn("p-2", disabled ? "cursor-default" : "cursor-grab")}>
+    <div ref={setNodeRef} style={style} className={cn("relative mb-2 flex items-center gap-2 rounded-md border border-slate-200 bg-white p-3 shadow-sm")}>
+      <div {...attributes} {...listeners} className={cn("p-2 text-slate-400", disabled ? "cursor-default" : "cursor-grab")}>
         <FaGripVertical />
       </div>
       <div className="flex-grow">
         {itemRender ? itemRender(item) : (
           <div>
-            <p className="font-semibold">{item.title || item.name || item.degree || t('sections.shared.untitled')}</p>
-            <p className="text-sm text-neutral-400">{item.subtitle || item.company || item.school || ''}</p>
+            <p className="font-semibold text-slate-900">{item.title || item.name || item.degree || t('sections.shared.untitled')}</p>
+            <p className="text-sm text-slate-500">{item.subtitle || item.company || item.school || ''}</p>
           </div>
         )}
       </div>
@@ -96,7 +96,7 @@ function SortableItem<T extends BaseItem>({ id, item, index, handleEdit, handleD
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuPortal>
-          <DropdownMenuContent align="end" className="w-[160px] bg-neutral-900 border-neutral-700 text-white">
+          <DropdownMenuContent align="end" className="w-[160px] border-slate-200 bg-white text-slate-700 shadow-lg">
             <DropdownMenuItem onSelect={() => toggleVisibility(index)} className="cursor-pointer">
               {item.visible === false ? <FaEyeSlash className="mr-2 h-4 w-4" /> : <FaEye className="mr-2 h-4 w-4" />}
               <span>{item.visible === false ? t('sections.shared.show') : t('sections.shared.hide')}</span>
@@ -290,7 +290,7 @@ export default function SectionListWithModal<T extends BaseItem>({
       </div>
 
       {(!maxItems || items.length < maxItems) && (
-        <Button variant="outline" onClick={() => handleOpenModal(null, null)} className="inline-flex w-full scale-100 items-center justify-center rounded-sm text-sm font-medium ring-offset-background transition-[transform,background-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50 border border-secondary bg-transparent hover:text-secondary-foreground h-9 px-5 gap-x-2 border-dashed py-6 leading-relaxed hover:bg-secondary-accent" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
+        <Button variant="outline" onClick={() => handleOpenModal(null, null)} className="inline-flex h-9 w-full scale-100 items-center justify-center gap-x-2 rounded-sm border border-dashed border-slate-300 bg-transparent px-5 py-6 text-sm font-medium leading-relaxed text-slate-600 ring-offset-background transition-[transform,background-color] hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50">
           <FaPlus className="mr-2" />  {t('sections.shared.addItem')}
         </Button>
       )}
@@ -310,7 +310,7 @@ export default function SectionListWithModal<T extends BaseItem>({
                   placeholder={field.placeholder}
                   value={(currentItem?.[field.name] as string) || ''}
                   onChange={handleInputChange}
-                  className="bg-neutral-800 border-neutral-700"
+                  className="bg-white border-slate-300"
                 />
               </div>
             ))}
@@ -328,7 +328,7 @@ export default function SectionListWithModal<T extends BaseItem>({
           <Button
             variant="outline"
             onClick={handleCloseModal}
-            className="border-neutral-600 bg-transparent text-neutral-300 hover:bg-neutral-800 hover:text-white"
+            className="border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900"
           >
             {t('modals.dynamicForm.cancelButton')}
           </Button>

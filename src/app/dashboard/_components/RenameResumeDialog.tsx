@@ -30,7 +30,7 @@ export default function RenameResumeDialog({
   const { t } = useTranslation();
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className='text-white'>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{t('renameDialog.title')}</DialogTitle>
         </DialogHeader>
@@ -46,7 +46,7 @@ export default function RenameResumeDialog({
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}
-            className="border-neutral-600 bg-transparent text-neutral-300 hover:bg-neutral-800 hover:text-white"
+            className="border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900"
           >
             {t('renameDialog.cancel')}
           </Button>

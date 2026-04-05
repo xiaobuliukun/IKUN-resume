@@ -27,18 +27,18 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-start overflow-y-auto p-4"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-900/30 p-4"
       onClick={onClose}
     >
       <div
-        className="bg-neutral-900 rounded-lg shadow-xl p-6 relative w-full max-w-2xl my-auto flex flex-col"
+        className="relative my-auto flex w-full max-w-2xl flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-xl"
         onClick={e => e.stopPropagation()}
       >
-        <div className="flex justify-between items-center border-b border-neutral-700 pb-3 mb-4">
+        <div className="mb-4 flex items-center justify-between border-b border-slate-200 pb-3">
           <h2 className="text-xl font-bold">{title}</h2>
           <button
             onClick={onClose}
-            className="text-neutral-400 hover:text-white transition-colors"
+            className="text-slate-400 transition-colors hover:text-slate-700"
           >
             &times;
           </button>

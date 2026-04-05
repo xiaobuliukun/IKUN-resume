@@ -16,7 +16,7 @@ const DialogOverlay = React.forwardRef<React.ElementRef<typeof DialogPrimitive.O
     <DialogPrimitive.Overlay
       ref={ref}
       className={cn(
-        "fixed inset-0 z-50 bg-black/80 backdrop-blur-sm",
+        "fixed inset-0 z-50 bg-slate-900/30 backdrop-blur-sm",
         className
       )}
       {...props}
@@ -32,7 +32,7 @@ const DialogContent = React.forwardRef<React.ElementRef<typeof DialogPrimitive.C
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          "fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-neutral-800 bg-neutral-900 p-6 shadow-xl duration-200 rounded-2xl",
+          "fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-2xl border border-slate-200 bg-white p-6 text-slate-900 shadow-xl duration-200",
           className
         )}
         {...props}
@@ -61,7 +61,7 @@ DialogTitle.displayName = DialogPrimitive.Title.displayName
 
 const DialogDescription = React.forwardRef<React.ElementRef<typeof DialogPrimitive.Description>, React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>>(
   ({ className, ...props }, ref) => (
-    <DialogPrimitive.Description ref={ref} className={cn("text-sm text-neutral-400", className)} {...props} />
+    <DialogPrimitive.Description ref={ref} className={cn("text-sm text-slate-500", className)} {...props} />
   )
 )
 DialogDescription.displayName = DialogPrimitive.Description.displayName

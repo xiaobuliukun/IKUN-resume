@@ -73,11 +73,11 @@ export function FeatureSections() {
   return (
     <>
       {/* AI 功能部分 */}
-      <section className="relative py-24 bg-neutral-900/30 overflow-hidden">
+      <section className="relative overflow-hidden bg-white/70 py-24">
         {/* 简化背景装饰 */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/3 rounded-full blur-2xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-500/3 rounded-full blur-2xl" />
+          <div className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-sky-500/5 blur-2xl" />
+          <div className="absolute bottom-1/4 right-1/4 h-64 w-64 rounded-full bg-indigo-500/5 blur-2xl" />
         </div>
 
         <div className="container mx-auto px-6 text-center relative z-10">
@@ -94,16 +94,16 @@ export function FeatureSections() {
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
               className="inline-block mb-6"
             >
-              <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 backdrop-blur-sm border border-blue-400/30 text-blue-300 px-4 py-2 rounded-full">
+              <div className="rounded-full border border-sky-200 bg-gradient-to-r from-sky-100 to-indigo-100 px-4 py-2 text-sky-700 backdrop-blur-sm">
                 <FiZap className="inline w-4 h-4 mr-2" />
                 <span suppressHydrationWarning>{t("landing.tags.aiEnhancement")}</span>
               </div>
             </motion.div>
             
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent" suppressHydrationWarning>
+            <h2 className="mb-6 bg-gradient-to-r from-slate-900 to-sky-700 bg-clip-text text-4xl font-bold text-transparent md:text-6xl" suppressHydrationWarning>
               {t("landing.features.main.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed" suppressHydrationWarning>
+            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-600" suppressHydrationWarning>
               {t("landing.features.main.subtitle")}
             </p>
           </motion.div>
@@ -118,20 +118,20 @@ export function FeatureSections() {
               className="h-full"
             >
               <SimpleMagneticCard className="h-full">
-                 <div className="h-full bg-neutral-900/90 border border-neutral-700/50 rounded-2xl p-8 flex flex-col items-start text-left hover:border-blue-400/30 transition-colors">
-                    <div className="p-3 bg-blue-500/10 rounded-xl mb-6">
-                      <FiZap className="w-8 h-8 text-blue-400" />
+                 <div className="flex h-full flex-col items-start rounded-2xl border border-slate-200 bg-white/95 p-8 text-left shadow-sm transition-colors hover:border-sky-300/50">
+                    <div className="mb-6 rounded-xl bg-sky-100 p-3">
+                      <FiZap className="h-8 w-8 text-sky-600" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold mb-4 text-white" suppressHydrationWarning>{t("landing.features.ai.title")}</h3>
+                    <h3 className="mb-4 text-2xl font-bold text-slate-900" suppressHydrationWarning>{t("landing.features.ai.title")}</h3>
                     
-                    <p className="text-neutral-400 leading-relaxed mb-6 flex-grow" suppressHydrationWarning>
+                    <p className="mb-6 flex-grow leading-relaxed text-slate-600" suppressHydrationWarning>
                       {t("landing.features.ai.description")}
                     </p>
 
                     <div className="w-full mt-auto">
-                      <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-neutral-800 border border-neutral-700/50">
-                         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-500/5" />
+                      <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+                         <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 to-indigo-500/5" />
                          <Image
                             src={aiCarouselImages[currentAiImageIndex]}
                             alt="AI Feature"
@@ -155,19 +155,19 @@ export function FeatureSections() {
               className="h-full"
             >
               <SimpleMagneticCard className="h-full">
-                 <div className="h-full bg-neutral-900/90 border border-neutral-700/50 rounded-2xl p-8 flex flex-col items-start text-left hover:border-indigo-400/30 transition-colors">
-                    <div className="p-3 bg-indigo-500/10 rounded-xl mb-6">
-                      <FiShield className="w-8 h-8 text-indigo-400" />
+                 <div className="flex h-full flex-col items-start rounded-2xl border border-slate-200 bg-white/95 p-8 text-left shadow-sm transition-colors hover:border-indigo-300/50">
+                    <div className="mb-6 rounded-xl bg-indigo-100 p-3">
+                      <FiShield className="h-8 w-8 text-indigo-600" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold mb-4 text-white" suppressHydrationWarning>{t("landing.tags.dataSecurityGuarantee")}</h3>
+                    <h3 className="mb-4 text-2xl font-bold text-slate-900" suppressHydrationWarning>{t("landing.tags.dataSecurityGuarantee")}</h3>
                     
-                    <p className="text-neutral-400 leading-relaxed mb-6 flex-grow" suppressHydrationWarning>
+                    <p className="mb-6 flex-grow leading-relaxed text-slate-600" suppressHydrationWarning>
                       {t("landing.features.privacy.description")}
                     </p>
 
                      <div className="w-full mt-auto">
-                      <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-neutral-800 border border-neutral-700/50">
+                      <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
                          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5" />
                          <Image
                             src={exportImportImages[currentExportImageIndex]}
@@ -186,7 +186,7 @@ export function FeatureSections() {
       </section>
 
       {/* 研究背景部分 - 新增 */}
-      <section className="relative py-24 bg-neutral-900/50 overflow-hidden">
+      <section className="relative overflow-hidden bg-slate-50 py-24">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -195,10 +195,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-5xl" suppressHydrationWarning>
               {t("landing.features.background.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
+            <p className="mx-auto max-w-3xl text-xl text-slate-600" suppressHydrationWarning>
               {t("landing.features.background.subtitle")}
             </p>
           </motion.div>
@@ -230,15 +230,15 @@ export function FeatureSections() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: item.delay }}
-                className="bg-neutral-800/30 border border-neutral-700/50 rounded-xl p-8 hover:bg-neutral-800/50 transition-colors"
+                className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm transition-colors hover:bg-slate-50"
               >
                 <div className={`w-12 h-12 rounded-full bg-${item.color}-500/10 flex items-center justify-center mb-6`}>
                   <item.icon className={`w-6 h-6 text-${item.color}-500`} />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-white" suppressHydrationWarning>
+                <h3 className="mb-4 text-xl font-bold text-slate-900" suppressHydrationWarning>
                   {t(`landing.features.background.cards.${item.key}.title`)}
                 </h3>
-                <p className="text-neutral-400 leading-relaxed" suppressHydrationWarning>
+                <p className="leading-relaxed text-slate-600" suppressHydrationWarning>
                   {t(`landing.features.background.cards.${item.key}.desc`)}
                 </p>
               </motion.div>
@@ -248,7 +248,7 @@ export function FeatureSections() {
       </section>
 
       {/* 优势对比部分 - 新增 */}
-      <section className="relative py-24 bg-black overflow-hidden">
+      <section className="relative overflow-hidden bg-white py-24">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -257,10 +257,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-5xl" suppressHydrationWarning>
               {t("landing.features.comparison.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
+            <p className="mx-auto max-w-3xl text-xl text-slate-600" suppressHydrationWarning>
               {t("landing.features.comparison.subtitle")}
             </p>
           </motion.div>
@@ -272,17 +272,17 @@ export function FeatureSections() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-neutral-900/50 border border-red-900/30 rounded-2xl p-8"
+              className="rounded-2xl border border-red-200 bg-red-50/60 p-8"
             >
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-neutral-800">
-                <div className="p-2 bg-red-500/10 rounded-lg">
+              <div className="mb-6 flex items-center gap-3 border-b border-red-200 pb-4">
+                <div className="rounded-lg bg-red-100 p-2">
                   <FiX className="w-6 h-6 text-red-500" />
                 </div>
-                <h3 className="text-2xl font-bold text-neutral-300" suppressHydrationWarning>{t("landing.features.comparison.traditional.title")}</h3>
+                <h3 className="text-2xl font-bold text-slate-900" suppressHydrationWarning>{t("landing.features.comparison.traditional.title")}</h3>
               </div>
               <ul className="space-y-4">
                 {[0, 1, 2, 3].map((i) => (
-                  <li key={i} className="flex items-start gap-3 text-neutral-400">
+                  <li key={i} className="flex items-start gap-3 text-slate-600">
                     <FiX className="w-5 h-5 text-red-500/50 mt-0.5 flex-shrink-0" />
                     <span suppressHydrationWarning>{t(`landing.features.comparison.traditional.points.${i}`)}</span>
                   </li>
@@ -296,21 +296,21 @@ export function FeatureSections() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-gradient-to-br from-blue-900/20 to-indigo-900/20 border border-blue-500/30 rounded-2xl p-8 relative overflow-hidden"
+              className="relative overflow-hidden rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-indigo-50 p-8"
             >
               <div className="absolute top-0 right-0 p-3 bg-blue-500 text-white text-xs font-bold rounded-bl-xl">
                 RECOMMENDED
               </div>
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-blue-500/20">
-                <div className="p-2 bg-blue-500/10 rounded-lg">
-                  <FiCheck className="w-6 h-6 text-blue-400" />
+              <div className="mb-6 flex items-center gap-3 border-b border-sky-200 pb-4">
+                <div className="rounded-lg bg-sky-100 p-2">
+                  <FiCheck className="w-6 h-6 text-sky-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-white" suppressHydrationWarning>{t("landing.features.comparison.ourSystem.title")}</h3>
+                <h3 className="text-2xl font-bold text-slate-900" suppressHydrationWarning>{t("landing.features.comparison.ourSystem.title")}</h3>
               </div>
               <ul className="space-y-4">
                 {[0, 1, 2, 3].map((i) => (
-                  <li key={i} className="flex items-start gap-3 text-blue-100">
-                    <FiCheck className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                  <li key={i} className="flex items-start gap-3 text-slate-700">
+                    <FiCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-sky-600" />
                     <span suppressHydrationWarning>{t(`landing.features.comparison.ourSystem.points.${i}`)}</span>
                   </li>
                 ))}
@@ -321,7 +321,7 @@ export function FeatureSections() {
       </section>
 
       {/* 技术架构部分 */}
-      <section className="relative py-24 bg-neutral-900/30 overflow-hidden">
+      <section className="relative overflow-hidden bg-white/70 py-24">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -330,10 +330,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-5xl" suppressHydrationWarning>
               {t("landing.features.architecture.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
+            <p className="mx-auto max-w-3xl text-xl text-slate-600" suppressHydrationWarning>
               {t("landing.features.architecture.subtitle")}
             </p>
           </motion.div>
@@ -371,13 +371,13 @@ export function FeatureSections() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-neutral-800/50 border border-neutral-700/50 rounded-xl p-6 hover:border-blue-500/30 transition-colors"
+                className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-sky-300/50"
               >
-                <div className={`w-12 h-12 rounded-lg bg-${item.color}-500/10 flex items-center justify-center mb-4 text-${item.color}-400`}>
+                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-${item.color}-500/10 text-${item.color}-500`}>
                   <item.icon size={24} />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-white" suppressHydrationWarning>{item.title}</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed" suppressHydrationWarning>
+                <h3 className="mb-3 text-xl font-bold text-slate-900" suppressHydrationWarning>{item.title}</h3>
+                <p className="text-sm leading-relaxed text-slate-600" suppressHydrationWarning>
                   {item.desc}
                 </p>
               </motion.div>
@@ -387,7 +387,7 @@ export function FeatureSections() {
       </section>
 
       {/* 创新点部分 - 新增 */}
-      <section className="relative py-24 bg-black overflow-hidden">
+      <section className="relative overflow-hidden bg-slate-50 py-24">
          <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -396,10 +396,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-5xl" suppressHydrationWarning>
               {t("landing.features.innovations.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
+            <p className="mx-auto max-w-3xl text-xl text-slate-600" suppressHydrationWarning>
               {t("landing.features.innovations.subtitle")}
             </p>
           </motion.div>
@@ -418,15 +418,15 @@ export function FeatureSections() {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className="relative group"
               >
-                <div className={`absolute inset-0 bg-gradient-to-r from-${item.color}-600/20 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                <div className="relative bg-neutral-900 border border-neutral-800 p-8 rounded-2xl h-full hover:border-neutral-700 transition-colors">
-                  <div className={`w-14 h-14 rounded-2xl bg-${item.color}-500/10 flex items-center justify-center mb-6 text-${item.color}-400 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-${item.color}-300/30 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100`} />
+                <div className="relative h-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-colors hover:border-slate-300">
+                  <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-${item.color}-500/10 text-${item.color}-500 transition-transform duration-300 group-hover:scale-110`}>
                     <item.icon size={28} />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4" suppressHydrationWarning>
+                  <h3 className="mb-4 text-2xl font-bold text-slate-900" suppressHydrationWarning>
                     {t(`landing.features.innovations.${item.key}.title`)}
                   </h3>
-                  <p className="text-neutral-400 leading-relaxed" suppressHydrationWarning>
+                  <p className="leading-relaxed text-slate-600" suppressHydrationWarning>
                     {t(`landing.features.innovations.${item.key}.desc`)}
                   </p>
                 </div>
@@ -437,7 +437,7 @@ export function FeatureSections() {
       </section>
 
       {/* 系统流程部分 */}
-      <section className="relative py-24 bg-neutral-900/30 overflow-hidden">
+      <section className="relative overflow-hidden bg-white py-24">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -446,14 +446,14 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-white" suppressHydrationWarning>
+            <h2 className="mb-12 text-3xl font-bold text-slate-900 md:text-5xl" suppressHydrationWarning>
               {t("landing.features.workflow.title")}
             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-4 gap-8 relative">
             {/* 连接线 */}
-            <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-900 -z-10" />
+            <div className="absolute top-12 left-0 -z-10 hidden h-0.5 w-full bg-gradient-to-r from-sky-200 via-indigo-200 to-sky-200 md:block" />
 
             {[
               { icon: FiFileText, key: "1" },
@@ -467,18 +467,18 @@ export function FeatureSections() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="flex flex-col items-center text-center bg-neutral-900 p-6 rounded-xl border border-neutral-800 relative z-10"
+                className="relative z-10 flex flex-col items-center rounded-xl border border-slate-200 bg-slate-50 p-6 text-center shadow-sm"
               >
-                <div className="w-16 h-16 rounded-full bg-neutral-800 border-2 border-blue-500/30 flex items-center justify-center mb-6 shadow-lg shadow-blue-900/20">
-                  <step.icon size={28} className="text-blue-400" />
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full border-2 border-sky-200 bg-white shadow-lg shadow-sky-100/60">
+                  <step.icon size={28} className="text-sky-600" />
                 </div>
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-900/80 text-blue-200 text-xs px-2 py-0.5 rounded-full border border-blue-700">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full border border-sky-200 bg-white px-2 py-0.5 text-xs text-sky-700">
                   Step {index + 1}
                 </div>
-                <h3 className="text-lg font-bold mb-3 text-white" suppressHydrationWarning>
+                <h3 className="mb-3 text-lg font-bold text-slate-900" suppressHydrationWarning>
                   {t(`landing.features.workflow.steps.${step.key}.title`)}
                 </h3>
-                <p className="text-neutral-400 text-sm" suppressHydrationWarning>
+                <p className="text-sm text-slate-600" suppressHydrationWarning>
                   {t(`landing.features.workflow.steps.${step.key}.description`)}
                 </p>
               </motion.div>
@@ -488,7 +488,7 @@ export function FeatureSections() {
       </section>
 
       {/* 核心算法与指标部分 - 新增 */}
-      <section className="relative py-24 bg-neutral-900/50 overflow-hidden">
+      <section className="relative overflow-hidden bg-slate-50 py-24">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -497,10 +497,10 @@ export function FeatureSections() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white" suppressHydrationWarning>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-5xl" suppressHydrationWarning>
               {t("landing.features.algorithm.title")}
             </h2>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto" suppressHydrationWarning>
+            <p className="mx-auto max-w-3xl text-xl text-slate-600" suppressHydrationWarning>
               {t("landing.features.algorithm.subtitle")}
             </p>
           </motion.div>
@@ -509,19 +509,19 @@ export function FeatureSections() {
           <div className="grid md:grid-cols-2 gap-8 mb-20">
              <motion.div 
                whileHover={{ scale: 1.02 }}
-               className="bg-gradient-to-br from-blue-900/20 to-neutral-900 border border-blue-500/20 rounded-2xl p-8"
+               className="rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-8"
              >
                <div className="flex items-center gap-4 mb-6">
-                 <div className="p-3 bg-blue-500/20 rounded-lg text-blue-400">
+                 <div className="rounded-lg bg-sky-100 p-3 text-sky-600">
                    <FiLayers size={32} />
                  </div>
-                 <h3 className="text-2xl font-bold text-white" suppressHydrationWarning>{t("landing.features.algorithm.rag.title")}</h3>
+                 <h3 className="text-2xl font-bold text-slate-900" suppressHydrationWarning>{t("landing.features.algorithm.rag.title")}</h3>
                </div>
-               <p className="text-neutral-400 leading-relaxed mb-6" suppressHydrationWarning>
+               <p className="mb-6 leading-relaxed text-slate-600" suppressHydrationWarning>
                  {t("landing.features.algorithm.rag.desc")}
                </p>
                {/* 模拟RAG流程可视化 */}
-               <div className="h-2 bg-neutral-800 rounded-full overflow-hidden">
+               <div className="h-2 overflow-hidden rounded-full bg-slate-200">
                  <motion.div 
                    className="h-full bg-blue-500"
                    initial={{ width: "0%" }}
@@ -529,7 +529,7 @@ export function FeatureSections() {
                    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
                  />
                </div>
-               <div className="flex justify-between text-xs text-neutral-500 mt-2">
+               <div className="mt-2 flex justify-between text-xs text-slate-500">
                  <span>Query</span>
                  <span>Vector DB</span>
                  <span>Context</span>
@@ -539,15 +539,15 @@ export function FeatureSections() {
 
              <motion.div 
                whileHover={{ scale: 1.02 }}
-               className="bg-gradient-to-br from-indigo-900/20 to-neutral-900 border border-indigo-500/20 rounded-2xl p-8"
+               className="rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-white p-8"
              >
                <div className="flex items-center gap-4 mb-6">
-                 <div className="p-3 bg-indigo-500/20 rounded-lg text-indigo-400">
+                 <div className="rounded-lg bg-indigo-100 p-3 text-indigo-600">
                    <FiCommand size={32} />
                  </div>
-                 <h3 className="text-2xl font-bold text-white" suppressHydrationWarning>{t("landing.features.algorithm.prompt.title")}</h3>
+                 <h3 className="text-2xl font-bold text-slate-900" suppressHydrationWarning>{t("landing.features.algorithm.prompt.title")}</h3>
                </div>
-               <p className="text-neutral-400 leading-relaxed mb-6" suppressHydrationWarning>
+               <p className="mb-6 leading-relaxed text-slate-600" suppressHydrationWarning>
                  {t("landing.features.algorithm.prompt.desc")}
                </p>
                <div className="flex gap-2">
@@ -561,7 +561,7 @@ export function FeatureSections() {
                    />
                  ))}
                </div>
-               <div className="flex justify-between text-xs text-neutral-500 mt-2">
+               <div className="mt-2 flex justify-between text-xs text-slate-500">
                  <span>Analysis</span>
                  <span>Reasoning</span>
                  <span>Drafting</span>
@@ -578,8 +578,8 @@ export function FeatureSections() {
                 viewport={{ once: true }}
                 className="text-center mb-12"
              >
-               <h3 className="text-2xl font-bold text-white mb-2" suppressHydrationWarning>{t("landing.features.scenarios.title")}</h3>
-               <p className="text-neutral-400" suppressHydrationWarning>{t("landing.features.scenarios.subtitle")}</p>
+               <h3 className="mb-2 text-2xl font-bold text-slate-900" suppressHydrationWarning>{t("landing.features.scenarios.title")}</h3>
+               <p className="text-slate-600" suppressHydrationWarning>{t("landing.features.scenarios.subtitle")}</p>
              </motion.div>
              
              <div className="grid md:grid-cols-3 gap-6">
@@ -593,15 +593,15 @@ export function FeatureSections() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-neutral-800/30 border border-neutral-700 p-6 rounded-xl hover:bg-neutral-800/50 transition-colors"
+                    className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:bg-slate-50"
                   >
-                    <div className={`w-10 h-10 rounded-full bg-${item.color}-500/10 flex items-center justify-center mb-4 text-${item.color}-400`}>
+                    <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-${item.color}-500/10 text-${item.color}-500`}>
                       <item.icon size={20} />
                     </div>
-                    <h4 className="text-lg font-bold text-white mb-2" suppressHydrationWarning>
+                    <h4 className="mb-2 text-lg font-bold text-slate-900" suppressHydrationWarning>
                       {t(`landing.features.scenarios.${item.key}.title`)}
                     </h4>
-                    <p className="text-sm text-neutral-400" suppressHydrationWarning>
+                    <p className="text-sm text-slate-600" suppressHydrationWarning>
                       {t(`landing.features.scenarios.${item.key}.desc`)}
                     </p>
                   </motion.div>
@@ -610,15 +610,15 @@ export function FeatureSections() {
           </div>
 
           {/* 性能指标 */}
-          <div className="border-t border-neutral-800 pt-16">
+          <div className="border-t border-slate-200 pt-16">
             <motion.div 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h3 className="text-2xl font-bold text-white mb-2" suppressHydrationWarning>{t("landing.features.metrics.title")}</h3>
-              <p className="text-neutral-400" suppressHydrationWarning>{t("landing.features.metrics.subtitle")}</p>
+              <h3 className="mb-2 text-2xl font-bold text-slate-900" suppressHydrationWarning>{t("landing.features.metrics.title")}</h3>
+              <p className="text-slate-600" suppressHydrationWarning>{t("landing.features.metrics.subtitle")}</p>
             </motion.div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
@@ -635,7 +635,7 @@ export function FeatureSections() {
                   className="p-4"
                 >
                   <div className={`text-4xl md:text-5xl font-bold ${stat.color} mb-2`}>{stat.value}</div>
-                  <div className="text-neutral-400 flex items-center justify-center gap-2" suppressHydrationWarning>
+                  <div className="flex items-center justify-center gap-2 text-slate-600" suppressHydrationWarning>
                     <stat.icon size={16} />
                     {stat.label}
                   </div>
@@ -647,11 +647,11 @@ export function FeatureSections() {
       </section>
 
       {/* 联系我们部分 */}
-      <section className="relative py-32 text-center bg-neutral-900/30 overflow-hidden">
+      <section className="relative overflow-hidden bg-white py-32 text-center">
         {/* 简化背景效果 */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/5 via-transparent to-indigo-900/5" />
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute inset-0 bg-gradient-to-t from-sky-100/50 via-transparent to-indigo-100/40" />
+          <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-sky-300/20 blur-2xl" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -663,13 +663,13 @@ export function FeatureSections() {
             className="max-w-4xl mx-auto"
           >
             <h2 
-              className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-indigo-200 bg-clip-text text-transparent"
+              className="mb-8 bg-gradient-to-r from-slate-900 via-sky-700 to-indigo-700 bg-clip-text text-4xl font-bold text-transparent md:text-6xl"
               suppressHydrationWarning
             >
               {t("landing.contact.title")}
             </h2>
             
-            <p className="text-xl text-neutral-400 max-w-2xl mx-auto mb-12 leading-relaxed" suppressHydrationWarning>
+            <p className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-slate-600" suppressHydrationWarning>
               {t("landing.contact.subtitle")}
             </p>
           </motion.div>

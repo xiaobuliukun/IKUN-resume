@@ -21,15 +21,15 @@ export function Header() {
     <motion.header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-black/70 backdrop-blur-xl border-b border-neutral-800/50 shadow-2xl shadow-blue-500/10' 
-          : 'bg-black/30 backdrop-blur-md border-b border-neutral-800/30'
+          ? 'border-b border-slate-200/80 bg-white/85 shadow-xl shadow-sky-100/60 backdrop-blur-xl' 
+          : 'border-b border-slate-200/40 bg-white/65 backdrop-blur-md'
       }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       {/* 顶部装饰线 */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sky-400/50 to-transparent" />
       
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
@@ -54,11 +54,11 @@ export function Header() {
                   className="transition-all duration-300 group-hover:brightness-110" 
                 />
                 */}
-                <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                <div className="text-xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">
                   Smart Resume
                 </div>
                 {/* Logo 光晕效果 */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-indigo-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-sky-300/30 to-indigo-300/30 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
               </motion.div>
             </Link>
           </motion.div>
@@ -72,7 +72,7 @@ export function Header() {
 
       {/* 底部装饰线 */}
       <motion.div 
-        className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-700 to-transparent"
+        className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ delay: 0.8, duration: 1 }}

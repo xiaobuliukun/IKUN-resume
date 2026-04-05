@@ -360,7 +360,7 @@ export default function TemplatePanel({ rightCollapsed, setRightCollapsed, onSel
   return (
     <>
       <motion.aside 
-        className="fixed top-0 right-0 h-screen bg-neutral-900 border-l border-neutral-800 flex justify-center items-start p-2 z-40 overflow-auto scrollbar-hide"
+        className="scrollbar-hide fixed top-0 right-0 z-40 flex h-screen items-start justify-center overflow-auto border-l border-slate-200 bg-white p-2 shadow-lg"
         variants={panelVariants}
         animate={rightCollapsed ? 'collapsed' : 'expanded'}
         initial={rightCollapsed ? 'collapsed' : 'expanded'}
@@ -388,7 +388,7 @@ export default function TemplatePanel({ rightCollapsed, setRightCollapsed, onSel
                     duration: 0.4
                   }}
                 >
-                  <div className="p-4 border-b border-neutral-800">
+                  <div className="border-b border-slate-200 p-4">
                     <motion.h2 
                       className="text-xl font-semibold text-left"
                       initial={{ opacity: 0, y: -10 }}
@@ -498,7 +498,7 @@ export default function TemplatePanel({ rightCollapsed, setRightCollapsed, onSel
         <Button
           variant="ghost"
           size="icon"
-          className="bg-neutral-800 hover:bg-neutral-700 text-white rounded-full h-8 w-8 shadow-lg border border-neutral-600 hover:scale-110 transition-transform duration-200"
+          className="h-8 w-8 rounded-full border border-slate-200 bg-white text-slate-700 shadow-lg transition-transform duration-200 hover:scale-110 hover:bg-slate-50"
           onClick={() => {
             setRightCollapsed(!rightCollapsed);
           }}

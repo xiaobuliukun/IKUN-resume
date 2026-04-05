@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 
 export default async function LandingPage() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       <InteractiveBackground />
       <div className="relative z-10 isolate">
         <Header />

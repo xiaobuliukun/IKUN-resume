@@ -97,7 +97,7 @@ export default function DynamicFormModal<T extends Item>({
                   placeholder={field.placeholder}
                   value={String(formData[field.name] || '')}
                   onChange={handleChange}
-                  className="bg-neutral-800 border-neutral-700"
+                  className="bg-white border-slate-300"
                 />
               ) : (
                 <Input
@@ -107,7 +107,7 @@ export default function DynamicFormModal<T extends Item>({
                   placeholder={field.placeholder}
                   value={String(formData[field.name] || '')}
                   onChange={handleChange}
-                  className="bg-neutral-800 border-neutral-700"
+                  className="bg-white border-slate-300"
                 />
               )}
             </div>
